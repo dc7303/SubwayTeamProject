@@ -2,15 +2,15 @@ package subway.user.model.service;
 
 import java.sql.SQLException;
 
-import subway.user.model.dao.UserDAO;
-import subway.user.model.dao.UserDAOImpl;
+import subway.user.model.dao.UserInfoDAO;
+import subway.user.model.dao.UserInfoDAOImpl;
+import subway.user.model.dto.OrderDTO;
 import subway.user.model.dto.UserInfoDTO;
-import subway.user.model.dto.UserMenuDTO;
 
-public class UserServiceImpl implements UserService {
-	private UserDAO userDAO = new UserDAOImpl();
+public class UserInfoServiceImpl implements UserInfoService {
+	private UserInfoDAO userDAO = new UserInfoDAOImpl();
 	@Override
-	public void userSignUp(UserDAO userDAO) throws SQLException{
+	public void userSignUp(UserInfoDAO userDAO) throws SQLException{
 		// TODO Auto-generated method stub
 
 	}
@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void userMyMenu(UserMenuDTO menuDTO) throws SQLException{
+	public void userMyMenu(OrderDTO orderDTO) throws SQLException{
 		// TODO Auto-generated method stub
 
 	}

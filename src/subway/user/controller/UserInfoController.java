@@ -1,12 +1,12 @@
 package subway.user.controller;
 
+import subway.user.model.dto.OrderDTO;
 import subway.user.model.dto.UserInfoDTO;
-import subway.user.model.dto.UserMenuDTO;
-import subway.user.model.service.UserService;
-import subway.user.model.service.UserServiceImpl;
+import subway.user.model.service.UserInfoService;
+import subway.user.model.service.UserInfoServiceImpl;
 
-public class UserController {
-	private UserService service = new UserServiceImpl();
+public class UserInfoController {
+	private UserInfoService service = new UserInfoServiceImpl();
 	/**
 	 * 회원가입
 	 * @param userDTO
@@ -36,7 +36,7 @@ public class UserController {
 	 * 나만의 메뉴
 	 * @param menuDTO
 	 */
-	public static void userMyMenu(UserMenuDTO menuDTO) {
+	public static void userMyMenu(OrderDTO orderDTO) {
 		
 	}
 	

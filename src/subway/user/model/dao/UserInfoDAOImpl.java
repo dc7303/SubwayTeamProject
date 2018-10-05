@@ -4,10 +4,10 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 import subway.model.util.DBUtil;
+import subway.user.model.dto.OrderDTO;
 import subway.user.model.dto.UserInfoDTO;
-import subway.user.model.dto.UserMenuDTO;
 
-public class UserDAOImpl implements UserDAO {
+public class UserInfoDAOImpl implements UserInfoDAO {
 	private Properties proFile = new DBUtil().getProperties();
 	
 	@Override
@@ -29,7 +29,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public int userMyMenu(UserMenuDTO menuDTO) throws SQLException{
+	public int userMyMenu(OrderDTO orderDTO) throws SQLException{
 		// TODO Auto-generated method stub
 		return 0;
 	}

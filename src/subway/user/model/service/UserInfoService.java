@@ -2,18 +2,18 @@ package subway.user.model.service;
 
 import java.sql.SQLException;
 
-import subway.user.model.dao.UserDAO;
+import subway.user.model.dao.UserInfoDAO;
+import subway.user.model.dto.OrderDTO;
 import subway.user.model.dto.UserInfoDTO;
-import subway.user.model.dto.UserMenuDTO;
 
-public interface UserService {
+public interface UserInfoService {
 	
 	/**
 	 * 회원가입 Service
 	 * 익셉션은 throws하고 성공시 service에서 success
 	 * @param userDAO
 	 */
-	public void userSignUp(UserDAO userDAO) throws SQLException;
+	public void userSignUp(UserInfoDAO userDAO) throws SQLException;
 	
 	/**
 	 * 로그인 Service
@@ -35,7 +35,7 @@ public interface UserService {
 	 * 익셉션은 throws하고 성공시 service에서 success
 	 * @param menuDTO
 	 */
-	public void userMyMenu(UserMenuDTO menuDTO) throws SQLException;
+	public void userMyMenu(OrderDTO orderDTO) throws SQLException;
 	
 	/**
 	 * 회원 탈퇴 Service

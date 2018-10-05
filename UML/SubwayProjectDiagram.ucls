@@ -10,8 +10,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="subway.user.model.service.UserServiceImpl" project="SubwayProject" 
-    file="/SubwayProject/src/subway/user/model/service/UserServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="2" language="java" name="subway.user.model.service.UserInfoServiceImpl" project="SubwayProject" 
+    file="/SubwayProject/src/subway/user/model/service/UserInfoServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="493" y="292"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -19,8 +19,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="3" language="java" name="subway.user.model.service.UserService" project="SubwayProject" 
-    file="/SubwayProject/src/subway/user/model/service/UserService.java" binary="false" corner="BOTTOM_RIGHT">    
+  <interface id="3" language="java" name="subway.user.model.service.UserInfoService" project="SubwayProject" 
+    file="/SubwayProject/src/subway/user/model/service/UserInfoService.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="501" y="-8"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -28,8 +28,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="4" language="java" name="subway.user.model.dao.UserDAO" project="SubwayProject" 
-    file="/SubwayProject/src/subway/user/model/dao/UserDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+  <interface id="4" language="java" name="subway.user.model.dao.UserInfoDAO" project="SubwayProject" 
+    file="/SubwayProject/src/subway/user/model/dao/UserInfoDAO.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="806" y="-16"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -37,8 +37,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="5" language="java" name="subway.user.model.dao.UserDAOImpl" project="SubwayProject" 
-    file="/SubwayProject/src/subway/user/model/dao/UserDAOImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="5" language="java" name="subway.user.model.dao.UserInfoDAOImpl" project="SubwayProject" 
+    file="/SubwayProject/src/subway/user/model/dao/UserInfoDAOImpl.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="814" y="269"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -46,8 +46,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="subway.user.controller.UserController" project="SubwayProject" 
-    file="/SubwayProject/src/subway/user/controller/UserController.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="6" language="java" name="subway.user.controller.UserInfoController" project="SubwayProject" 
+    file="/SubwayProject/src/subway/user/controller/UserInfoController.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="146" y="200"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -64,8 +64,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="subway.user.model.dto.UserMenuDTO" project="SubwayProject" 
-    file="/SubwayProject/src/subway/user/model/dto/UserMenuDTO.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="8" language="java" name="subway.user.model.dto.OderDTO" project="SubwayProject" 
+    file="/SubwayProject/src/subway/user/model/dto/OderDTO.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1107" y="567"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -82,30 +82,38 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <realization id="10">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <realization id="11">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="3"/>  
-  </realization>  
-  <association id="12">    
+  <association id="10">    
     <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="13" name="service"/>      
-      <multiplicity id="14" minimum="0" maximum="1"/>    
+      <attribute id="11" name="service">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="12" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="15">    
+  <realization id="13">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="3"/>  
+  </realization>  
+  <association id="14">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="16" name="userDAO"/>      
-      <multiplicity id="17" minimum="0" maximum="1"/>    
+      <attribute id="15" name="userDAO">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="16" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <realization id="17">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
