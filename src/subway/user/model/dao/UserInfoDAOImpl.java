@@ -3,12 +3,12 @@ package subway.user.model.dao;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import subway.model.util.DBUtil;
+import subway.dbUtil.DBUtil;
 import subway.user.model.dto.OrderDTO;
 import subway.user.model.dto.UserInfoDTO;
 
 public class UserInfoDAOImpl implements UserInfoDAO {
-	private Properties proFile = new DBUtil().getProperties();
+	private Properties proFile = new DBUtil().getProFile();
 	
 	@Override
 	public int userSignUp(UserInfoDTO userDTO) throws SQLException{
