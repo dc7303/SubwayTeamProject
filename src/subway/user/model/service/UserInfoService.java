@@ -13,7 +13,7 @@ public interface UserInfoService {
 	 * 익셉션은 throws하고 성공시 service에서 success
 	 * @param userDAO
 	 */
-	public void userSignUp(UserInfoDAO userDAO) throws SQLException;
+	public void userSignUp(UserInfoDTO userDTO) throws SQLException;
 	
 	/**
 	 * 로그인 Service

@@ -10,7 +10,7 @@ import subway.user.model.dto.UserInfoDTO;
 public class UserInfoServiceImpl implements UserInfoService {
 	private UserInfoDAO userDAO = new UserInfoDAOImpl();
 	@Override
-	public void userSignUp(UserInfoDAO userDAO) throws SQLException{
+	public void userSignUp(UserInfoDTO userDTO) throws SQLException{
 		// TODO Auto-generated method stub
 
 	}

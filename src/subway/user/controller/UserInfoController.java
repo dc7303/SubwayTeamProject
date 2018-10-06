@@ -12,7 +12,7 @@ public class UserInfoController {
 	 * @param userDTO
 	 */
 	public static int userSignUp(UserInfoDTO userDTO) {
-		
+		service.userSignUp(userDTO);
 		return 0;
 	}
 	
