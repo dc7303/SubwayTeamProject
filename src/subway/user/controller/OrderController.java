@@ -7,19 +7,13 @@ import subway.user.model.dto.VegetablesDTO;
 
 public class OrderController {
 	
-	public int orderInsert (OrderDTO orderDTO) {
-		try {
-			
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
+	public static int orderInsert (OrderDTO orderDTO) {
+
+		return 0;
 	}
 	
-	public int vegetablesInsert(VegetablesDTO vegDTO) {
-		try {
-			
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
+	public static int vegetablesInsert(VegetablesDTO vegDTO) {
+		
+		return 0;
 	}
 }

@@ -47,6 +47,12 @@ public class VegetablesDTO {
 	public void setOderId(String oderId) {
 		this.oderId = oderId;
 	}
+
+	@Override
+	public String toString() {
+		return vegId + " | " + vegName + " | " + vegAmount + " | "
+				+ oderId;
+	}
 	
 	
 	

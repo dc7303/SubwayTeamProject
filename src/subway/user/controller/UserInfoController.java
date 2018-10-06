@@ -11,8 +11,9 @@ public class UserInfoController {
 	 * 회원가입
 	 * @param userDTO
 	 */
-	public static void userSignUp(UserInfoDTO userDTO) {
+	public static int userSignUp(UserInfoDTO userDTO) {
 		
+		return 0;
 	}
 	
 	/**
@@ -20,25 +21,20 @@ public class UserInfoController {
 	 * @param id
 	 * @param pw
 	 */
-	public static void userSignIn(String id, String pw) {
+	public static int userSignIn(String id, String pw) {
 		
+		return 0;
 	}
 	
 	/**
 	 * 회원정보 수정
 	 * @param userDTO
 	 */
-	public static void userUpdate(UserInfoDTO userDTO) {
+	public static int userUpdate(UserInfoDTO userDTO) {
 		
+		return 0;
 	}
 	
-	/**
-	 * 나만의 메뉴
-	 * @param menuDTO
-	 */
-	public static void userMyMenu(OrderDTO orderDTO) {
-		
-	}
 	
 	/**
 	 * 회원탈퇴
@@ -46,7 +42,8 @@ public class UserInfoController {
 	 * @param pw
 	 * @param phone
 	 */
-	public static void userDelete(String id, String pw, String phone) {
+	public static int userDelete(String id, String pw, String phone) {
 		
+		return 0;
 	}
 }
