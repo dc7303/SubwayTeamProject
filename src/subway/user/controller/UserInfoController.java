@@ -6,7 +6,7 @@ import subway.user.model.service.UserInfoService;
 import subway.user.model.service.UserInfoServiceImpl;
 
 public class UserInfoController {
-	private UserInfoService service = new UserInfoServiceImpl();
+	private static UserInfoService service = new UserInfoServiceImpl();
 	/**
 	 * 회원가입
 	 * @param userDTO
