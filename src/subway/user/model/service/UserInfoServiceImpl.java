@@ -11,8 +11,9 @@ public class UserInfoServiceImpl implements UserInfoService {
 	private UserInfoDAO userDAO = new UserInfoDAOImpl();
 	@Override
 	public int userSignUp(UserInfoDTO userDTO) throws SQLException{
-		// TODO Auto-generated method stub
-		return 0;
+		int re = userDAO.userSignUp(userDTO);
+		if(re==0)throw new SQLException("가입되지 않았습니다.");
+		return re;
 	}
 
 	@Override
@@ -29,8 +30,9 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 	@Override
 	public int userMyMenu(OrderDTO orderDTO) throws SQLException{
-		// TODO Auto-generated method stub
-		return 0;
+		int re = userDAO.userMyMenu(orderDTO);
+		if(re==0) throw new SQLException("MY MENU가 존재하지 않습니다.");
+		return re;
 	}
 
 	@Override
