@@ -10,9 +10,9 @@ import subway.user.model.dto.UserInfoDTO;
 public class UserInfoServiceImpl implements UserInfoService {
 	private UserInfoDAO userDAO = new UserInfoDAOImpl();
 	@Override
-	public void userSignUp(UserInfoDTO userDTO) throws SQLException{
+	public int userSignUp(UserInfoDTO userDTO) throws SQLException{
 		// TODO Auto-generated method stub
-
+		return 0;
 	}
 
 	@Override
@@ -22,15 +22,15 @@ public class UserInfoServiceImpl implements UserInfoService {
 	}
 
 	@Override
-	public void userUpdate(UserInfoDTO userDTO) throws SQLException{
+	public int userUpdate(UserInfoDTO userDTO) throws SQLException{
 		// TODO Auto-generated method stub
-
+		return 0;
 	}
 
 	@Override
-	public void userMyMenu(OrderDTO orderDTO) throws SQLException{
+	public int userMyMenu(OrderDTO orderDTO) throws SQLException{
 		// TODO Auto-generated method stub
-
+		return 0;
 	}
 
 	@Override
