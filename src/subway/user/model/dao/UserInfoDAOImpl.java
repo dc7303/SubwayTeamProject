@@ -1,5 +1,7 @@
 package subway.user.model.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Properties;
 
@@ -24,8 +26,24 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 
 	@Override
 	public int userUpdate(UserInfoDTO userDTO) throws SQLException{
-		// TODO Auto-generated method stub
-		return 0;
+		Connection con = null;
+		PreparedStatement ps = null;
+		int result = 0;
+		
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement("UPDATE USERS SET USER_PASS=?, USER_NAME=?,USER_PHONE=?,USER_EMAIL=? WHERE USER_ID=?");
+			ps.setString(1, userDTO.getUserPw());
+			ps.setString(2, userDTO.getUserName());
+			ps.setString(3, userDTO.getUserPhone());
+			ps.setString(4, userDTO.getUserEmail());
+			ps.setString(5, userDTO.getUserId());
+			result = ps.executeUpdate();
+			
+		}finally {
+			DBUtil.dbClose(ps, con);
+		}
+		return result;
 	}
 
 	@Override
