@@ -27,8 +27,11 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public List<OrderDTO> myMenuSelect(String userID) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		List<OrderDTO> list = orderDAO.myMenuSelect(userID);
+		if(list==null) {
+			throw new SQLException("나만의 메뉴 리스트를 불러오는데 실패했습니다.");
+		}
+		return list;
 	}
 
 }

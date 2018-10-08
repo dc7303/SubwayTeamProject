@@ -32,7 +32,14 @@ public class OrderController {
 	}
 	
 	public static List<OrderDTO> myMenuSelect(String userID) {
-		
-		return null;
+		List<OrderDTO> list = null;
+		try {
+			list = orderService.myMenuSelect(userID);
+			SuccessView.listView(list);
+		}catch(SQLException e) {
+			e.printStackTrace();
+			FailView.errorMessage(e.getMessage());
+		}
+		return list;
 	}
 }

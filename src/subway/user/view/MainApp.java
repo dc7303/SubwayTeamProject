@@ -1,5 +1,6 @@
 package subway.user.view;
 
+import java.util.List;
 import java.util.Scanner;
 
 import subway.user.controller.OrderController;
@@ -120,6 +121,6 @@ public class MainApp {
 	 * @param sc
 	 */
 	public static void myMenuSelect (Scanner sc) {
-		
+		List<OrderDTO>list = OrderController.myMenuSelect("C62");
 	}
 }
