@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import kosta.mvc.model.dto.BoardDTO;
-import kosta.mvc.model.util.DbUtil;
 import subway.dbUtil.DBUtil;
 import subway.user.model.dto.OrderDTO;
 import subway.user.model.dto.UserInfoDTO;
