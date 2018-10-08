@@ -32,7 +32,7 @@ public class UserInfoController {
 		UserInfoDTO userDTO = null;
 		try {
 			userDTO = service.userSignIn(id, pw);
-			SuccessView.successMessage(id+"님 환영합니다.");
+			SuccessView.successMessage(userDTO.getUserId()+"님 환영합니다.");
 		}catch(Exception e) {
 			FailView.errorMessage(e.getMessage());
 		}
