@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
@@ -56,7 +57,7 @@ public class OrderDAOImpl implements OrderDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		String sql = "select * from orders where order_is_my_menu = 'TRUE' and order_user = ?";
-		List<OrderDTO> list = null;
+		List<OrderDTO> list = new ArrayList<OrderDTO>();
 		try {
 			con = DBUtil.getConnection();
 			ps = con.prepareStatement(sql);
