@@ -10,7 +10,7 @@ public interface UserInfoService {
 	
 	/**
 	 * 회원가입 Service
-	 * 익셉션은 throws하고 성공시 service에서 success
+	 * 
 	 * @param userDAO
 	 */
 	public int userSignUp(UserInfoDTO userDTO) throws SQLException;
@@ -25,21 +25,21 @@ public interface UserInfoService {
 	
 	/**
 	 * 회원정보 수정 Service
-	 * 익셉션은 throws하고 성공시 service에서 success
+	 * 
 	 * @param userDTO
 	 */
 	public int userUpdate(UserInfoDTO userDTO) throws SQLException;
 	
 	/**
 	 * 나만의 메뉴 Service 
-	 * 익셉션은 throws하고 성공시 service에서 success
+	 * 
 	 * @param menuDTO
 	 */
 	public int userMyMenu(OrderDTO orderDTO) throws SQLException;
 	
 	/**
 	 * 회원 탈퇴 Service
-	 * 익셉션은 throws하고 성공시 service에서 success
+	 * 
 	 * @param id
 	 * @param pw
 	 * @param phone

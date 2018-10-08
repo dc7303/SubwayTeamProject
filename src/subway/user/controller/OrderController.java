@@ -1,10 +1,8 @@
 package subway.user.controller;
 
-import java.sql.SQLException;
+import java.util.List;
 
 import subway.user.model.dto.OrderDTO;
-import subway.user.model.dto.VegetablesDTO;
-import subway.user.model.service.OrderService;
 
 public class OrderController {
 		
@@ -13,8 +11,13 @@ public class OrderController {
 		return 0;
 	}
 	
-	public static int vegetablesInsert(VegetablesDTO vegDTO) {
+	public static List<OrderDTO> orderSelect(String userId) {
 		
-		return 0;
+		return null;
+	}
+	
+	public static List<OrderDTO> myMenuSelect(String userID) {
+		
+		return null;
 	}
 }

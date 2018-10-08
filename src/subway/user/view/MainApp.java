@@ -13,7 +13,7 @@ public class MainApp {
 		
 		while(run){
 			System.out.println("*********************프로젝트 테스트*********************");
-			System.out.println("1.회원가입 | 2.로그인 | 3.회원정보 수정 | 4.회원탈퇴 | 5. OrderInsert | 6. VegetablesInsert | 7.종료");
+			System.out.println("1.회원가입 | 2.로그인 | 3.회원정보 수정 | 4.회원탈퇴 | 5. OrderInsert | 6. orderSelect | 7.myMenuSelect | 8.종료");
 			System.out.print("번호입력 = >");
 			int select = sc.nextInt();
 			
@@ -24,8 +24,9 @@ public class MainApp {
 			case 3 : MainApp.userUpdate(sc); break;
 			case 4 : MainApp.userDelete(sc); break;
 			case 5 : MainApp.orderInsert(sc); break;
-			case 6 : MainApp.vegetablesInsert(sc); break;
-			case 7 : System.out.println("종료합니다."); run = false;
+			case 6 : MainApp.orderSelect(sc); break;
+			case 7 : MainApp.myMenuSelect(sc); break;
+			case 8 : System.out.println("종료합니다."); run = false;
 			}
 		}
 	}
@@ -71,10 +72,18 @@ public class MainApp {
 	}
 	
 	/**
-	 * vegetables 테이블 생성
+	 * 사용자한테 보여지기 위해 select문 사용
 	 * @param sc
 	 */
-	public static void vegetablesInsert (Scanner sc) {
+	public static void orderSelect (Scanner sc) {
+		
+	}
+	
+	/**
+	 * 나만의 메뉴 가져오기 위한 메소드
+	 * @param sc
+	 */
+	public static void myMenuSelect (Scanner sc) {
 		
 	}
 }
