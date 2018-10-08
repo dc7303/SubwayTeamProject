@@ -3,6 +3,7 @@ package subway.user.controller;
 import subway.user.model.dto.UserInfoDTO;
 import subway.user.model.service.UserInfoService;
 import subway.user.model.service.UserInfoServiceImpl;
+import subway.user.view.FailView;
 import subway.user.view.SuccessView;
 
 public class UserInfoController {
@@ -27,9 +28,15 @@ public class UserInfoController {
 	 * @param id
 	 * @param pw
 	 */
-	public static int userSignIn(String id, String pw) {
-		
-		return 0;
+	public static UserInfoDTO userSignIn(String id, String pw) {
+		UserInfoDTO userDTO = null;
+		try {
+			userDTO = service.userSignIn(id, pw);
+			SuccessView.successMessage(id+"님 환영합니다.");
+		}catch(Exception e) {
+			FailView.errorMessage(e.getMessage());
+		}
+		return userDTO;
 	}
 	
 	/**
@@ -37,8 +44,14 @@ public class UserInfoController {
 	 * @param userDTO
 	 */
 	public static int userUpdate(UserInfoDTO userDTO) {
-		
-		return 0;
+		int result=0;
+		try {
+			result = service.userUpdate(userDTO);
+			SuccessView.successMessage("수정 완료");
+		}catch(Exception e) {
+			FailView.errorMessage(e.getMessage());
+		}
+		return result;
 	}
 	
 	

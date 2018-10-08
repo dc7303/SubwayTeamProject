@@ -18,14 +18,20 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 	@Override
 	public UserInfoDTO userSignIn(String id, String pw) throws SQLException{
-		// TODO Auto-generated method stub
-		return null;
+			UserInfoDTO userDTO = userDAO.userSignIn(id, pw);
+			if(userDTO == null) {
+				throw new SQLException ("로그인 실패");
+			}
+			return userDTO;
 	}
 
 	@Override
 	public int userUpdate(UserInfoDTO userDTO) throws SQLException{
-		// TODO Auto-generated method stub
-		return 0;
+		int userUpdate = userDAO.userUpdate(userDTO);
+		if(userUpdate == 0) {
+			throw new SQLException("수정실패");
+		}
+		return userUpdate;
 	}
 
 	@Override
