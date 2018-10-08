@@ -2,8 +2,8 @@ package subway.user.view;
 
 import java.util.Scanner;
 
-import subway.user.controller.UserInfoController;
-import subway.user.model.dto.UserInfoDTO;
+import subway.user.controller.OrderController;
+import subway.user.model.dto.OrderDTO;
 
 public class MainApp {
 	
@@ -68,6 +68,42 @@ public class MainApp {
 	 * @param sc
 	 */
 	public static void orderInsert (Scanner sc) {
+		//INSERT INTO ORDERS VALUES(ORDER_SEQ.NEXTVAL, 30 , '로티세리 치킨', 
+		//'에그마요','허니오트','리치시저',9000,1035,'C62','배달해주면 안되요? 오반가..?','TRUE', 2, 2);
+		System.out.println("빵 길이를 선택해주세요.(15 or 30");
+		System.out.print("입력=> ");
+		int length = sc.nextInt();
+		
+		System.out.println("메인메뉴를 선택해주세요(ex풀드포크, 에그마요)");
+		System.out.print("입력=> ");
+		String main = sc.next();
+		
+		System.out.println("추가토핑를 입력하세요.(ex더블업, 오믈렛");
+		System.out.print("입력=>");
+		String extra = sc.next();
+		
+		System.out.println("빵을 선택해주세요 (ex허니오트, 하티)");
+		System.out.print("입력=>");
+		String bread = sc.next();
+		
+		System.out.println("소스를 선택하세요.(ex리치시저, 마요네즈");
+		System.out.print("입력=> ");
+		String sause = sc.next();
+		
+		System.out.println("id를 입력하세요");
+		System.out.print("입력=> ");
+		String userId = sc.next();
+		
+		System.out.println("메뉴에 대해 요구하실 부분을 입력해주세요(ex절임야채 빼주세요)");
+		System.out.print("입력=> ");
+		String text = sc.next();
+		
+		System.out.println("수량을 입력해주세요");
+		System.out.print("입력=> ");
+		int quantity = sc.nextInt();
+		
+		
+		int result = OrderController.orderInsert(new OrderDTO(0, length, main, extra, bread, sause, 0, 0, userId, text, "FALSE", quantity, "1"));
 		
 	}
 	
