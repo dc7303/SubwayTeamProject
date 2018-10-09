@@ -15,8 +15,23 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	
 	@Override
 	public int userSignUp(UserInfoDTO userDTO) throws SQLException{
-		// TODO Auto-generated method stub
-		return 0;
+		Connection con=null;
+		PreparedStatement ps=null;
+		int result=0;
+		try {
+		con=DBUtil.getConnection();
+		ps=con.prepareStatement("INSERT INTO USERS(USER_ID, USER_PASS, USER_NAME, USER_PHONE, USER_EMAIL) VALUES(?,?,?,?,?)");
+		ps.setString(1, userDTO.getUserId());
+		ps.setString(2, userDTO.getUserPw());
+		ps.setString(3, userDTO.getUserName());
+		ps.setString(4, userDTO.getUserPhone());
+		ps.setString(5, userDTO.getUserEmail());
+		
+		result = ps.executeUpdate();
+		}finally{
+			DBUtil.dbClose( ps , con);
+		}
+		return result;
 	}
 
 	@Override 
@@ -25,10 +40,9 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		UserInfoDTO userDTO = null;
-		String name = null;
 		try {
 			con = DBUtil.getConnection();
-			ps = con.prepareStatement("SELECT USER_NAME FROM USERS WHERE USER_ID=? AND USER_PASS=?");
+			ps = con.prepareStatement("SELECT USER_ID, USER_PASS, USER_NAME, USER_PHONE, USER_EMAIL FROM USERS WHERE USER_ID=? AND USER_PASS=?");
 			ps.setString(1, id);
 			ps.setString(2, pw);
 			rs = ps.executeQuery();
@@ -67,7 +81,18 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 
 	@Override
 	public int userMyMenu(OrderDTO orderDTO) throws SQLException{
-		// TODO Auto-generated method stub
+		Connection con=null;
+		PreparedStatement ps=null;
+		int result=0;
+		try {
+		con=DBUtil.getConnection();
+		ps=con.prepareStatement("SELECT * FROM ORDERS WHERE ORDER_USER = 'À¯ÀúID' AND ORDER_IS_MY_MENU = 'TRUE'");
+		ps.setString(1, orderDTO.getOrderUser());
+		ps.setString(2, orderDTO.getOrderIsMyMenu());
+		result = ps.executeUpdate();
+		}finally {
+			DBUtil.dbClose( ps , con);
+		}
 		return 0;
 	}
 
