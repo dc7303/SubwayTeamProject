@@ -20,10 +20,14 @@ public class UserInfoController {
 	 * ·Î±×ÀÎ
 	 * @param id
 	 * @param pw
+	 * 
 	 */
-	public static int userSignIn(String id, String pw) {
+	public static UserInfoDTO userSignIn(String id, String pw) {
 		
-		return 0;
+		UserInfoDTO user = new UserInfoDTO("C62", "123123");
+		
+		//return user;
+		return null;
 	}
 	
 	/**

@@ -16,6 +16,8 @@ public class MainFrame extends JFrame {
 	public static Font labelFont;
 	public static Font FieldFont;
 	private CardLayout cards = new CardLayout();
+	private static String UserId;
+	
 	public MainFrame() {
 		super("subway");
 		
@@ -35,10 +37,15 @@ public class MainFrame extends JFrame {
 		
 		super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		
 		setLayout(cards);
-		add("sign-in",new SigninView(this));
-		add("Home",new HomeView(this));
-		cards.show(this.getContentPane(), "sign-in");
+		
+		//카드추가
+		add("Sign-in",new SigninView(this));
+		//add("Home",new HomeView(this));
+		add("Sign-up",new SignupView(this));
+		
+		cards.show(this.getContentPane(), "Sign-in");
 		setSize(900,800);
 		setLocationRelativeTo(null);
 		setVisible(true);	
@@ -47,4 +54,11 @@ public class MainFrame extends JFrame {
 	public CardLayout getCardLayout() {
 		 return cards;
 		}
+	
+	public static String getUserId() {
+		return UserId;
+	}
+	public static void setUserId(String userId) {
+		UserId = userId;
+	}
 }

@@ -8,11 +8,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class HomeView extends JPanel implements ActionListener{
-	private JFrame F;
+	private MainFrame F;
+	String UserName;
 	JLabel labelId = new JLabel("ID");
 	public HomeView(JFrame frame) {
-		F = frame;
-		labelId.setText("홈이다 인마");
+		F = (MainFrame)frame;
+		UserName = F.getUserId();
+		labelId.setText(UserName+"님 환영합니다");
 		
 		add(labelId);
 		

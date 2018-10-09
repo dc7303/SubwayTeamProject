@@ -1,6 +1,7 @@
 package subway.user.view;
 
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -20,20 +21,21 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import subway.user.controller.UserInfoController;
+import subway.user.model.dto.UserInfoDTO;
 
 public class SigninView extends JPanel implements ActionListener {
 	BufferedImage img = null;
 	// Container con;
 	//JPanel jp = new JPanel();
-	JPanel innerJp = new JPanel();
-	ImageIcon ic;
-	JLabel image = new JLabel("SUBWAY(이미지)");
-	JLabel labelId = new JLabel("ID");
-	JLabel labelPass = new JLabel("PASSWORD");
-	JTextField fieldId = new JTextField(20);
-	JPasswordField fieldPass = new JPasswordField(20);
-	JButton btnSignIn = new JButton("로그인");
-	JButton btnSignUp = new JButton("회원가입");
+	private JPanel innerJp = new JPanel();
+	private ImageIcon ic;
+	private JLabel image = new JLabel("SUBWAY(이미지)");
+	private JLabel labelId = new JLabel("ID");
+	private JLabel labelPass = new JLabel("PASSWORD");
+	private JTextField fieldId = new JTextField(20);
+	private JPasswordField fieldPass = new JPasswordField(20);
+	private JButton btnSignIn = new JButton("로그인");
+	private JButton btnSignUp = new JButton("회원가입");
 	private MainFrame F;
 	public SigninView(JFrame frame) {
 		F = (MainFrame)frame;
@@ -93,8 +95,12 @@ public class SigninView extends JPanel implements ActionListener {
 
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						UserInfoController.userSignIn(fieldId.getText(), fieldPass.getText());
-
+						UserInfoDTO user = UserInfoController.userSignIn(fieldId.getText(), fieldPass.getText());
+						if(user == null) {
+							FailView.errorMessage("입력하신 정보와 일치한 회원이 없습니다.");
+						}
+						F.setUserId(user.getUserId());
+						F.add("Home",new HomeView(F));
 						F.getCardLayout().show(F.getContentPane(), "Home");
 					}
 				});
@@ -102,7 +108,7 @@ public class SigninView extends JPanel implements ActionListener {
 					
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						
+						F.getCardLayout().show(F.getContentPane(), "Sign-up");
 						
 					}
 				});
