@@ -8,6 +8,8 @@ import subway.user.model.dto.UserInfoDTO;
 public class MainApp {
 	
 	public static void main(String[] args) {
+		new LoginPage();
+		/*
 		Scanner sc = new Scanner(System.in);
 		boolean run = true;
 		
@@ -29,6 +31,7 @@ public class MainApp {
 			case 8 : System.out.println("종료합니다."); run = false;
 			}
 		}
+		*/
 	}
 	
 	/**
