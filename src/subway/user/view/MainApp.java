@@ -8,7 +8,7 @@ import subway.user.model.dto.UserInfoDTO;
 public class MainApp {
 	
 	public static void main(String[] args) {
-		new LoginPage();
+		new MainFrame();
 		/*
 		Scanner sc = new Scanner(System.in);
 		boolean run = true;
