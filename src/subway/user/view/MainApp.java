@@ -3,6 +3,7 @@ package subway.user.view;
 import java.util.Scanner;
 
 import subway.user.controller.UserInfoController;
+import subway.user.model.dao.UserInfoDAO;
 import subway.user.model.dto.UserInfoDTO;
 
 public class MainApp {
@@ -35,7 +36,23 @@ public class MainApp {
 	 * @param sc
 	 */
 	public static void userSignUp (Scanner sc){
-		
+	 System.out.println("ID를 입력하세요");
+	 String id = sc.next();
+   	 
+   	 System.out.println("PASSWORD를 입력하세요");
+   	 String pw = sc.next();
+   	 
+   	 System.out.println("이름을 입력하세요");
+   	 String name = sc.next();
+   	 
+   	 System.out.println("휴대폰 번호를 입력하세요");
+	 String phone = sc.next();
+	 
+	 System.out.println("email를 입력하세요");
+	 String email = sc.next();
+	 
+	 UserInfoDTO userDTO = new UserInfoDTO(id, pw, name, phone, email);
+	 UserInfoController.userSignUp(userDTO);
 	}
 	
 	/**
@@ -43,7 +60,11 @@ public class MainApp {
 	 * @param sc
 	 */
 	public static void userSignIn (Scanner sc) {
+		System.out.println("ID 입력 : ");
+		String id = sc.next();
 		
+		System.out.println("패스워드 입력 : ");
+		String pw = sc.next();
 	}
 	
 	/**
@@ -51,7 +72,20 @@ public class MainApp {
 	 * @param sc
 	 */
 	public static void userUpdate (Scanner sc) {
+		System.out.println("ID를 입력하세요 : ");
+		String id = sc.next();  //???
 		
+		System.out.println("수정할 패스워드 입력 : ");
+		String pw = sc.next();
+		
+		System.out.println("수정할 이름 입력 : ");
+		String name = sc.next();
+		
+		System.out.println("수정할 phone 번호 입력 : ");
+		String phone = sc.next();
+		
+		System.out.println("수정할 이메일 입력 : ");
+		String email = sc.next();
 	}
 	
 	/**
@@ -59,7 +93,20 @@ public class MainApp {
 	 * @param sc
 	 */
 	public static void userDelete (Scanner sc) {
+		System.out.println("ID를 입력하세요 : ");
+		String id = sc.next();  //???
 		
+		System.out.println("수정할 패스워드 입력 : ");
+		String pw = sc.next();
+		
+		System.out.println("수정할 이름 입력 : ");
+		String name = sc.next();
+		
+		System.out.println("수정할 phone 번호 입력 : ");
+		String phone = sc.next();
+		
+		System.out.println("수정할 이메일 입력 : ");
+		String email = sc.next();
 	}
 	
 	/**
