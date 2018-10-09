@@ -20,7 +20,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 	public UserInfoDTO userSignIn(String id, String pw) throws SQLException{
 		UserInfoDTO userDTO = userDAO.userSignIn(id, pw);
 		if(userDTO == null) {
-			throw new SQLException ("로그인 실패");
+			throw new SQLException ("로그인에 실패했습니다.");
 		}
 		return userDTO;
 	}
@@ -29,7 +29,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 	public int userUpdate(UserInfoDTO userDTO) throws SQLException{
 		int userUpdate = userDAO.userUpdate(userDTO);
 		if(userUpdate == 0) {
-			throw new SQLException("수정실패");
+			throw new SQLException("수정이 실패되었습니다.");
 		}
 		return userUpdate;
 	}

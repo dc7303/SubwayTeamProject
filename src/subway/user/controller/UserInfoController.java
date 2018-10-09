@@ -47,7 +47,7 @@ public class UserInfoController {
 		int result=0;
 		try {
 			result = service.userUpdate(userDTO);
-			SuccessView.successMessage("수정 완료");
+			SuccessView.successMessage("수정이 완료되었습니다.");
 		}catch(Exception e) {
 			FailView.errorMessage(e.getMessage());
 		}
