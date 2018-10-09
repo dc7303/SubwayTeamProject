@@ -18,30 +18,18 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 	@Override
 	public UserInfoDTO userSignIn(String id, String pw) throws SQLException{
-<<<<<<< HEAD
-			UserInfoDTO userDTO = userDAO.userSignIn(id, pw);
-			if(userDTO == null) {
-				throw new SQLException ("로그인 실패");
-			}
-			return userDTO;
-=======
-		UserInfoDTO userInfoDTO = userDAO.userSignIn(id, pw);
-		if(userInfoDTO == null) {
+		UserInfoDTO userDTO = userDAO.userSignIn(id, pw);
+		if(userDTO == null) {
 			throw new SQLException ("로그인 실패");
 		}
-		return userInfoDTO;
->>>>>>> 411382a5dab6e6d265612c9f46c2ea57f396b063
+		return userDTO;
 	}
 
 	@Override
 	public int userUpdate(UserInfoDTO userDTO) throws SQLException{
 		int userUpdate = userDAO.userUpdate(userDTO);
 		if(userUpdate == 0) {
-<<<<<<< HEAD
 			throw new SQLException("수정실패");
-=======
-			throw new SQLException("수정 실패");
->>>>>>> 411382a5dab6e6d265612c9f46c2ea57f396b063
 		}
 		return userUpdate;
 	}
