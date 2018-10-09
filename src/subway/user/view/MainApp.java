@@ -48,10 +48,10 @@ public class MainApp {
    	 System.out.println("휴대폰 번호를 입력하세요");
 	 String phone = sc.next();
 	 
-	 System.out.println("주소를 입력하세요");
-	 String addr = sc.next();
+	 System.out.println("email를 입력하세요");
+	 String email = sc.next();
 	 
-	 UserInfoDTO userDTO = new UserInfoDTO(id, pw, name, phone, addr);
+	 UserInfoDTO userDTO = new UserInfoDTO(id, pw, name, phone, email);
 	 UserInfoController.userSignUp(userDTO);
 	}
 	
