@@ -65,6 +65,9 @@ public class MainApp {
 		
 		System.out.println("패스워드 입력 : ");
 		String pw = sc.next();
+		
+		UserInfoDTO userDTO = new UserInfoDTO(id, pw);
+		UserInfoController.userSignIn(id,pw);
 	}
 	
 	/**
@@ -74,7 +77,6 @@ public class MainApp {
 	public static void userUpdate (Scanner sc) {
 		System.out.println("ID를 입력하세요 : ");
 		String id = sc.next();  //???
-<<<<<<< HEAD
 		
 		System.out.println("수정할 패스워드 입력 : ");
 		String pw = sc.next();
@@ -85,20 +87,11 @@ public class MainApp {
 		System.out.println("수정할 phone 번호 입력 : ");
 		String phone = sc.next();
 		
-=======
-		
-		System.out.println("수정할 패스워드 입력 : ");
-		String pw = sc.next();
-		
-		System.out.println("수정할 이름 입력 : ");
-		String name = sc.next();
-		
-		System.out.println("수정할 phone 번호 입력 : ");
-		String phone = sc.next();
-		
->>>>>>> 411382a5dab6e6d265612c9f46c2ea57f396b063
 		System.out.println("수정할 이메일 입력 : ");
 		String email = sc.next();
+		
+		UserInfoDTO userDTO = new UserInfoDTO(id, pw, name, phone, email);
+		UserInfoController.userUpdate(userDTO);
 	}
 	
 	/**
@@ -106,20 +99,7 @@ public class MainApp {
 	 * @param sc
 	 */
 	public static void userDelete (Scanner sc) {
-		System.out.println("ID를 입력하세요 : ");
-		String id = sc.next();  //???
 		
-		System.out.println("수정할 패스워드 입력 : ");
-		String pw = sc.next();
-		
-		System.out.println("수정할 이름 입력 : ");
-		String name = sc.next();
-		
-		System.out.println("수정할 phone 번호 입력 : ");
-		String phone = sc.next();
-		
-		System.out.println("수정할 이메일 입력 : ");
-		String email = sc.next();
 	}
 	
 	/**
