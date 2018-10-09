@@ -29,6 +29,7 @@ public class UserInfoController {
 	 * @param pw
 	 */
 	public static UserInfoDTO userSignIn(String id, String pw) {
+<<<<<<< HEAD
 		UserInfoDTO userDTO = null;
 		try {
 			userDTO = service.userSignIn(id, pw);
@@ -37,6 +38,16 @@ public class UserInfoController {
 			FailView.errorMessage(e.getMessage());
 		}
 		return userDTO;
+=======
+		UserInfoDTO userInfoDTO = null;
+		try {
+			userInfoDTO = service.userSignIn(id, pw);
+			SuccessView.successMessage(id+"님 환영합니다.");
+		}catch(Exception e) {
+			FailView.errorMessage(e.getMessage());
+		}
+		return userInfoDTO;
+>>>>>>> 411382a5dab6e6d265612c9f46c2ea57f396b063
 	}
 	
 	/**
