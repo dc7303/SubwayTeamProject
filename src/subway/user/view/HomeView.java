@@ -30,11 +30,14 @@ public class HomeView extends JPanel implements ActionListener {
 	private JButton btnOrder = new JButton("주문하기");
 	private JButton btnRecent = new JButton("최근주문");
 	private JButton btnMyMenu = new JButton("나의메뉴");
-
+	private JLabel labelId;
+	private JLabel labelWelcome;
+	
 	public HomeView(JFrame frame) {
 		F = (MainFrame) frame;
 		UserName = F.getUserId();
-
+		labelId = new JLabel(UserName);
+		labelWelcome = new JLabel("님 환영합니다.");
 		// 이미지 로드
 		try {
 			img = ImageIO.read(new File("img/subway_title.png"));
@@ -48,6 +51,11 @@ public class HomeView extends JPanel implements ActionListener {
 
 		setLayout(null);
 		setBackground(Color.white);
+		
+		labelId.setBounds(50, 0, 100, 50);
+		labelId.setFont(MainFrame.userFont);
+		labelWelcome.setBounds(150, 0, 100, 50);
+		labelWelcome.setFont(MainFrame.userFont);
 
 		btnOrder.setBounds(340, 300, 200, 50);
 		btnRecent.setBounds(340, 400, 200, 50);
@@ -180,6 +188,8 @@ public class HomeView extends JPanel implements ActionListener {
 		add(btnOrder);
 		add(btnRecent);
 		add(btnMyMenu);
+		add(labelId);
+		add(labelWelcome);
 
 	}
 

@@ -13,7 +13,7 @@ public class UserInfoController {
 	 */
 	public static int userSignUp(UserInfoDTO userDTO) {
 		
-		return 0;
+		return 1;
 	}
 	
 	/**

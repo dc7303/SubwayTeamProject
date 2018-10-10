@@ -15,10 +15,14 @@ public class MainFrame extends JFrame {
 	public static Border lineBorderG;
 	public static Border emptyBorder;
 	public static Border lineBorderY;
+	public static Border lineBorderW;
 	public static Font labelFont;
 	public static Font FieldFont;
+	public static Font userFont;
+	public static Font titleFont;
 	public static Color sub_green;
 	public static Color sub_yellow;
+	public static Color sub_grey;
 	private CardLayout cards = new CardLayout();
 	private static String UserId;
 	
@@ -29,18 +33,21 @@ public class MainFrame extends JFrame {
 		//색
 		sub_green =  Color.decode("#009132");
 		sub_yellow =  Color.decode("#FFBF00");
+		sub_grey = Color.decode("#F8F8F8");
 		
 		//테두리
 		 lineBorderG = BorderFactory.createLineBorder(sub_green, 2);
 		 //Border lineBorderG = BorderFactory.createLineBorder(Color.black, 2);
 		 emptyBorder = BorderFactory.createEmptyBorder(5, 5, 5, 5);
 		lineBorderY = BorderFactory.createLineBorder(sub_yellow, 2);
+		lineBorderY = BorderFactory.createLineBorder(Color.white, 1);
 		 
 	
 		//폰트
 		labelFont = new Font("HeaderFont",Font.BOLD, 25);
 		FieldFont = new Font("HeaderFont",Font.PLAIN, 25);
-		
+		userFont = new Font("HeadrFont",Font.BOLD, 15);
+		titleFont = new Font("HeadrFont",Font.BOLD, 45);
 		//favicon
 		
 		ImageIcon icon = new ImageIcon("img/subway_og.png");
@@ -55,8 +62,9 @@ public class MainFrame extends JFrame {
 		
 		//카드추가
 		add("Sign-in",new SigninView(this));
-		//add("Home",new HomeView(this));
+		//add("Home",new HomeView(this));	-> user정보 유지를 위해 나중에 추가
 		add("Sign-up",new SignupView(this));
+		
 		
 		cards.show(this.getContentPane(), "Sign-in");
 		setSize(900,800);
