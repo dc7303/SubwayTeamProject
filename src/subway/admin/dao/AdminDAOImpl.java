@@ -64,8 +64,27 @@ public class AdminDAOImpl implements AdminDAO {
 
     @Override
     public int menuUpdate(IngredientDTO ingredDTO) throws SQLException {
-        // TODO Auto-generated method stub
-        return 0;
+        Connection con = null;
+        PreparedStatement ps = null;
+        int result = 0;
+        String sql = "update from ingredients set INGRED_CATEGORY = ?, INGRED_CALORIE = ?, "
+                + "INGRED_PRICE_15 = ?, INGRED_PRICE_30 = ?, INGRED_RECOMMEND_SAUCE = ? WHERE INGRED_NAME = ?";
+        
+        try {
+            con = DBUtil.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, ingredDTO.getIngredCategory());
+            ps.setInt(2, ingredDTO.getIngredCalorie());
+            ps.setInt(3, ingredDTO.getIngredPrice15());
+            ps.setInt(4, ingredDTO.getIngredPrice30());
+            ps.setString(5, ingredDTO.getIngredRecommendSauce());
+            ps.setString(6, ingredDTO.getIngredName());
+            result = ps.executeUpdate();
+            
+        }finally {
+            DBUtil.dbClose(ps, con);
+        }
+        return result;
     }
 
 }

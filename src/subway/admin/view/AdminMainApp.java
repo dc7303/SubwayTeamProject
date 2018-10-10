@@ -50,6 +50,24 @@ public class AdminMainApp {
     }
     
     public static void menuUpdate (Scanner sc) {
+        System.out.println("수정하실 메뉴 또는 재료의 이름을 입력하세요");
+        String name = sc.next();
         
+        System.out.println("수정하실 카테고리를 입력하세요");
+        String category = sc.next();
+        
+        System.out.println("수정하실 칼로리를 입력하세요");
+        int calorie = sc.nextInt();
+        
+        System.out.println("수정하실 15cm 가격을 입력하세요");
+        int price15 = sc.nextInt();
+        
+        System.out.println("수정하실 30cm 가격을 입력하세요");
+        int price30 = sc.nextInt();
+        
+        System.out.println("수정하실 기본 소스를 입력해주세요");
+        String sause = sc.next();
+        
+        AdminController.menuUpdate(new IngredientDTO(name, category, calorie, price15, price30, sause));
     }
 }

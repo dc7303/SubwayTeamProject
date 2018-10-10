@@ -34,8 +34,12 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public int menuUpdate(IngredientDTO ingredDTO) throws SQLException {
-        // TODO Auto-generated method stub
-        return 0;
+        int result = 0;
+        result = adminDAO.menuUpdate(ingredDTO);
+        if(result == 0) {
+            throw new SQLException("메뉴 수정에 실패하였습니다.");
+        }
+        return result;
     }
 
 }

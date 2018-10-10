@@ -56,8 +56,15 @@ public class AdminController {
      * @return 1이상이면 true, 0이면 false;
      */
     public static int menuUpdate(IngredientDTO ingredDTO) {
-        
-        return 0;
+        int result = 0;
+        try {
+            result = service.menuUpdate(ingredDTO);
+            SuccessView.successMessage("수정되었습니다.");
+        }catch(SQLException e){
+            e.printStackTrace();
+            FailView.errorMessage(e.getMessage());
+        }
+        return result;
     }
     
     
