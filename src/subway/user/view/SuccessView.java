@@ -3,6 +3,7 @@ package subway.user.view;
 
 import java.util.List;
 
+import subway.admin.dto.IngredientDTO;
 import subway.user.model.dto.OrderDTO;
 
 public class SuccessView {
@@ -17,5 +18,10 @@ public class SuccessView {
 			System.out.println(list.get(i));
 		}
 	}
- 
+	
+	public static void menuListView(List<IngredientDTO> list) {
+        for(int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i));
+        }
+    }
 }

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import subway.admin.dto.IngredientDTO;
 import subway.dbUtil.DBUtil;
 import subway.user.model.dto.OrderDTO;
 
@@ -96,5 +97,28 @@ public class OrderDAOImpl implements OrderDAO {
 			DBUtil.dbClose(rs, ps, con);
 		}
 	}
+
+    @Override
+    public List<IngredientDTO> menuList() throws SQLException {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = "select * from ingredients";
+        List<IngredientDTO> list = new ArrayList<IngredientDTO>();
+        try {
+            con = DBUtil.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while(rs.next()) {
+                list.add(new IngredientDTO(rs.getString("ingred_name"), rs.getString("ingred_category"),
+                        rs.getInt("ingred_calorie"), rs.getInt("ingred_price_15"),
+                        rs.getInt("ingred_price_30"), rs.getString("ingred_recommend_sauce")));
+                
+            }
+            return list;
+        }finally {
+            DBUtil.dbClose(rs, ps, con);
+        }
+    }
 
 }

@@ -3,6 +3,7 @@ package subway.user.model.service;
 import java.sql.SQLException;
 import java.util.List;
 
+import subway.admin.dto.IngredientDTO;
 import subway.user.model.dao.OrderDAO;
 import subway.user.model.dao.OrderDAOImpl;
 import subway.user.model.dto.OrderDTO;
@@ -33,5 +34,14 @@ public class OrderServiceImpl implements OrderService {
 		}
 		return list;
 	}
+
+    @Override
+    public List<IngredientDTO> menuList() throws SQLException {
+        List<IngredientDTO> list = orderDAO.menuList();
+        if(list==null) {
+            throw new SQLException("메뉴 리스트를 불러오는데 실패했습니다.");
+        }
+        return list;
+    }
 
 }

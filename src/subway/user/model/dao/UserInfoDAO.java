@@ -18,7 +18,7 @@ public interface UserInfoDAO {
      * @return UserInfoDTO
      * @throws SQLException
      */
-    public UserInfoDTO userIdCheck(String id) throws SQLException;
+    UserInfoDTO userIdCheck(String id) throws SQLException;
     
 	/**
 	 * 로그인 id와 pw 받아서 select 쿼리문 사용
@@ -43,4 +43,6 @@ public interface UserInfoDAO {
 	 * 회원 탈퇴 delete 쿼리문 사용해서 삭제. 사용자 확인은 임시로 phone 번호 기입하는 걸로 임시적용
 	 */
 	int userDelete (String id, String pw, String phone) throws SQLException;
+
+    
 }

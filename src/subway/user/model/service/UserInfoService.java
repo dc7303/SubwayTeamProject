@@ -54,4 +54,6 @@ public interface UserInfoService {
 	 * @return
 	 */
 	public int userDelete(String id, String pw, String phone) throws SQLException;
+
+
 }

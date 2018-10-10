@@ -1,7 +1,5 @@
 package subway.user.controller;
 
-import java.sql.SQLException;
-
 import subway.user.model.dto.UserInfoDTO;
 import subway.user.model.service.UserInfoService;
 import subway.user.model.service.UserInfoServiceImpl;

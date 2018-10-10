@@ -4,8 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.omg.PortableInterceptor.SUCCESSFUL;
-
+import subway.admin.dto.IngredientDTO;
 import subway.user.model.dto.OrderDTO;
 import subway.user.model.service.OrderService;
 import subway.user.model.service.OrderServiceImpl;
@@ -50,5 +49,17 @@ public class OrderController {
 			FailView.errorMessage(e.getMessage());
 		}
 		return list;
+	}
+	
+	public static List<IngredientDTO> menuList(){
+	    List<IngredientDTO> list = null;
+	    try {
+	        list = orderService.menuList();
+	        SuccessView.menuListView(list);
+	    }catch (SQLException e) {
+	        e.printStackTrace();
+	        FailView.errorMessage(e.getMessage());
+	    }
+	    return list; 
 	}
 }

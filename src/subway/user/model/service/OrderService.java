@@ -3,6 +3,7 @@ package subway.user.model.service;
 import java.sql.SQLException;
 import java.util.List;
 
+import subway.admin.dto.IngredientDTO;
 import subway.user.model.dto.OrderDTO;
 
 public interface OrderService {
@@ -17,5 +18,7 @@ public interface OrderService {
 	public List<OrderDTO> orderSelect(String userId) throws SQLException;
 	
 	public List<OrderDTO> myMenuSelect(String userID) throws SQLException;
+	
+	public List<IngredientDTO> menuList() throws SQLException;
 	
 }
