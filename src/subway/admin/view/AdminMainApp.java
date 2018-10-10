@@ -12,13 +12,14 @@ public class AdminMainApp {
         boolean run = true;
         while(run) {
             System.out.println("***************사용하실 기능을 선택하세요****************");
-            System.out.println("1.회원조회 | 2.메뉴추가 | 3.메뉴수정 | 4.종료");
+            System.out.println("1.회원조회 | 2.메뉴추가 | 3.메뉴수정 | 4.메뉴삭제 | 5.종료");
             int input = sc.nextInt();
             switch(input) {
                 case 1 : userSearch(); break;
                 case 2 : menuInsert(sc); break;
                 case 3 : menuUpdate(sc);break;
-                case 4 : System.out.println("프로그램 종료합니다."); run = false;
+                case 4 : menuDelete(sc);break;
+                case 5 : System.out.println("프로그램 종료합니다."); run = false;
             }
         }
     }
@@ -69,5 +70,12 @@ public class AdminMainApp {
         String sause = sc.next();
         
         AdminController.menuUpdate(new IngredientDTO(name, category, calorie, price15, price30, sause));
+    }
+    
+    public static void menuDelete (Scanner sc) {
+        System.out.println("삭제하실 메뉴 또는 재료의 이름을 입력하세요");
+        String name = sc.next();
+        
+        AdminController.menuDelete(name);
     }
 }

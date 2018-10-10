@@ -67,6 +67,17 @@ public class AdminController {
         return result;
     }
     
+    public static int menuDelete(String ingredName) {
+        int result = 0;
+        try {
+            result = service.menuDelete(ingredName);
+            SuccessView.successMessage("삭제되었습니다.");
+        }catch(SQLException e) {
+            e.printStackTrace();
+            FailView.errorMessage(e.getMessage());
+        }
+        return result;
+    }
     
 }
 

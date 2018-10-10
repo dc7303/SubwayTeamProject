@@ -10,6 +10,7 @@ import java.util.Properties;
 
 import subway.admin.dto.IngredientDTO;
 import subway.dbUtil.DBUtil;
+import subway.user.model.dto.OrderDTO;
 import subway.user.model.dto.UserInfoDTO;
 
 public class AdminDAOImpl implements AdminDAO {
@@ -86,5 +87,25 @@ public class AdminDAOImpl implements AdminDAO {
         }
         return result;
     }
+
+    @Override
+    public int menuDelete(String ingredName) throws SQLException {
+        Connection con = null;
+        PreparedStatement ps = null;
+        int result = 0;
+        String sql = "delete from ingredient where = ?";
+        
+        try {
+            con = DBUtil.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, ingredName);
+            result = ps.executeUpdate();
+            
+        }finally {
+            DBUtil.dbClose(ps, con);
+        }
+        return result;
+    }
+
 
 }

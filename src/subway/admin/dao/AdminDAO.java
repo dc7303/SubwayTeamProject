@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import subway.admin.dto.IngredientDTO;
+import subway.user.model.dto.OrderDTO;
 import subway.user.model.dto.UserInfoDTO;
 
 public interface AdminDAO {
@@ -30,4 +31,14 @@ public interface AdminDAO {
      * @return 1이면 true, 0이면 false.
      */
     public int menuUpdate(IngredientDTO ingredDTO) throws SQLException;
+    
+    /**
+     * 메뉴 삭제
+     * 
+     * @param ingredName
+     * @return 1이면 true, 0이면 false.
+     * @throws SQLException
+     */
+    public int menuDelete(String ingredName) throws SQLException;
+    
 }
