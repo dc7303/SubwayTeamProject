@@ -67,7 +67,7 @@ public class AdminDAOImpl implements AdminDAO {
         Connection con = null;
         PreparedStatement ps = null;
         int result = 0;
-        String sql = "update from ingredients set INGRED_CATEGORY = ?, INGRED_CALORIE = ?, "
+        String sql = "update ingredients set INGRED_CATEGORY = ?, INGRED_CALORIE = ?, "
                 + "INGRED_PRICE_15 = ?, INGRED_PRICE_30 = ?, INGRED_RECOMMEND_SAUCE = ? WHERE INGRED_NAME = ?";
         
         try {
