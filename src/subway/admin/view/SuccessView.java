@@ -19,6 +19,8 @@ public class SuccessView {
      * @param list
      */
     public static void userSearch(List<UserInfoDTO> list) {
-        
+        for(UserInfoDTO dto : list) {
+            System.out.println(dto);
+        }
     }
 }

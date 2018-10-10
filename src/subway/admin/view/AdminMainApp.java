@@ -2,6 +2,8 @@ package subway.admin.view;
 
 import java.util.Scanner;
 
+import subway.admin.controller.AdminController;
+
 public class AdminMainApp {
     
     public static void main(String[] args) {
@@ -21,7 +23,7 @@ public class AdminMainApp {
     }
     
     public static void userSearch () {
-        
+        AdminController.userSearch();
     }
     
     public static void menuInsert (Scanner sc) {
