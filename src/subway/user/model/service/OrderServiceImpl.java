@@ -21,8 +21,8 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public List<OrderDTO> orderSelect(String userId) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		List<OrderDTO> list = orderDAO.orderSelect(userId);
+		return list;
 	}
 
 	@Override

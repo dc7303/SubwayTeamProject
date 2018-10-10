@@ -153,9 +153,12 @@ public class MainApp {
 	/**
 	 * 사용자한테 보여지기 위해 select문 사용
 	 * @param sc
+	 * 아직 insert로 기본메뉴들을 넣지 않았음. 지금 2가지 / 로티세리와 폴드포크만 들어가 있음.
 	 */
 	public static void orderSelect (Scanner sc) {
-		
+		System.out.print("userId 입력해주세요 :  ");
+		String userId = sc.next();
+		OrderController.orderSelect(userId);
 	}
 	
 	/**

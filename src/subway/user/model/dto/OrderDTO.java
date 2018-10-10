@@ -14,8 +14,11 @@ public class OrderDTO {
 	private String orderIsMyMenu;	//나만의 메뉴
 	private int orderQuantity;		//수량
 	private String orderBasket;		//바스켓 아이디
-	
+	private int size15;
+	private int size30;
+	String reSauce; 
 	public OrderDTO() {}
+	
 
 	public OrderDTO(int orderId, int orderBreadLength, String orderMenu, String orderExtra, String orderBread,
 			String orderSauce, int orderPrice, int orderCalorie, String orderUser, String orderText,
@@ -34,6 +37,33 @@ public class OrderDTO {
 		this.orderIsMyMenu = orderIsMyMenu;
 		this.orderQuantity = orderQuantity;
 		this.orderBasket = orderBasket;
+	}
+	public OrderDTO(String orderMenu, int orderCalorie, int size15, int size30, String reSauce ) {
+			this.orderMenu = orderMenu;
+			this.orderCalorie = orderCalorie;
+			this.size15 = size15;
+			this.size30=size30;
+			this.reSauce = reSauce;
+	}
+	public int getSize15() {
+		return size15;
+	}
+	public void setSize15(int size15) {
+		this.size15=size15;
+	}
+
+	public int getSize30() {
+		return size30;
+	}
+	public void SetSize30(int size30) {
+		this.size30 = size30;
+	}
+	
+	public String ReSauce() {
+		return reSauce;
+	}
+	public void setResauce(String reSauce) {
+		this.reSauce=reSauce;
 	}
 
 	public int getOrderId() {
@@ -151,6 +181,7 @@ public class OrderDTO {
 				+ " | " + orderText + ", orderIsMyMenu=" + orderIsMyMenu + ", orderQuantity=" + orderQuantity
 				+ " | " + orderBasket;
 	}
+	
 	
 	
 	
