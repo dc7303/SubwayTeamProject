@@ -38,8 +38,15 @@ public class AdminController {
      * @return 1이상이면 true, 0이면 false;
      */
     public static int menuInsert(IngredientDTO ingredDTO) {
-
-        return 0;
+        int result = 0;
+        try {
+            result = service.menuInsert(ingredDTO);
+            SuccessView.successMessage("등록되었습니다.");
+        }catch(SQLException e){
+            e.printStackTrace();
+            FailView.errorMessage(e.getMessage());
+        }
+        return result;
     }
     
     /**
