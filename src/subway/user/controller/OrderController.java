@@ -32,7 +32,7 @@ public class OrderController {
 		try{
 			list = orderService.orderSelect(userId);
 			System.out.println(userId+"님이 선택할 수 있는 메뉴");
-			SuccessView.SelectAll(list);
+			SuccessView.listView(list);
 			return list;
 		}catch(Exception e) {
 			e.printStackTrace();
