@@ -15,7 +15,16 @@ public class UserInfoServiceImpl implements UserInfoService {
 		if(re==0)throw new SQLException("가입되지 않았습니다.");
 		return re;
 	}
-
+	
+    @Override
+    public UserInfoDTO userIdCheck(String id) throws SQLException {
+        UserInfoDTO userDTO = userDAO.userIdCheck(id);
+        if(userDTO != null) {
+            throw new SQLException("이미 존재하는 아이디입니다.");
+        }
+        return userDTO;
+    }
+	 
 	@Override
 	public UserInfoDTO userSignIn(String id, String pw) throws SQLException{
 		UserInfoDTO userDTO = userDAO.userSignIn(id, pw);
@@ -46,5 +55,6 @@ public class UserInfoServiceImpl implements UserInfoService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
 
 }

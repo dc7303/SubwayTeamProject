@@ -1,5 +1,7 @@
 package subway.user.controller;
 
+import java.sql.SQLException;
+
 import subway.user.model.dto.UserInfoDTO;
 import subway.user.model.service.UserInfoService;
 import subway.user.model.service.UserInfoServiceImpl;
@@ -21,6 +23,25 @@ public class UserInfoController {
 			FailView.errorMessage(e.getMessage());
 		}
 		return result;
+	}
+	
+	/**
+	 * 유저 ID체크
+	 * @param userId
+	 * @return
+	 */
+	public static UserInfoDTO userIdCheck(String userId) {
+	    UserInfoDTO userDTO = null;
+	    try {
+	        userDTO = service.userIdCheck(userId);
+	        if(userDTO == null) {
+	            SuccessView.successMessage("가입 가능한 아이디입니다.");
+	        }
+	    }catch(Exception e) {
+	        e.printStackTrace();
+	        FailView.errorMessage(e.getMessage());
+	    }
+	    return userDTO;
 	}
 	
 	/**
@@ -65,4 +86,5 @@ public class UserInfoController {
 		
 		return 0;
 	}
+	
 }

@@ -12,7 +12,14 @@ public interface UserInfoDAO {
 	 */
 	int userSignUp (UserInfoDTO userDTO) throws SQLException; 
 	
-	
+	/**
+     * 유저 아이디 체크
+     * @param id
+     * @return UserInfoDTO
+     * @throws SQLException
+     */
+    public UserInfoDTO userIdCheck(String id) throws SQLException;
+    
 	/**
 	 * 로그인 id와 pw 받아서 select 쿼리문 사용
 	 */

@@ -17,7 +17,8 @@ public class MainApp {
 		
 		while(run){
 			System.out.println("*********************프로젝트 테스트*********************");
-			System.out.println("1.회원가입 | 2.로그인 | 3.회원정보 수정 | 4.회원탈퇴 | 5. OrderInsert | 6. orderSelect | 7.myMenuSelect | 8.종료");
+			System.out.println("1.회원가입 | 2.로그인 | 3.회원정보 수정 | 4.회원탈퇴 | 5. OrderInsert |"
+			        + " 6. orderSelect | 7.myMenuSelect | 8.아이디체크 | 9.종료");
 			System.out.print("번호입력 = >");
 			int select = sc.nextInt();
 			
@@ -30,7 +31,8 @@ public class MainApp {
 			case 5 : MainApp.orderInsert(sc); break;
 			case 6 : MainApp.orderSelect(sc); break;
 			case 7 : MainApp.myMenuSelect(sc); break;
-			case 8 : System.out.println("종료합니다."); run = false;
+			case 8 : MainApp.userIdCheck(sc); break;
+			case 9 : System.out.println("종료합니다."); run = false;
 			}
 		}
 	}
@@ -167,5 +169,11 @@ public class MainApp {
 	 */
 	public static void myMenuSelect (Scanner sc) {
 		List<OrderDTO>list = OrderController.myMenuSelect("C62");
+	}
+	
+	public static void userIdCheck (Scanner sc) {
+	    System.out.println("중복체크하실 아이디를 입력하세요");
+	    String id = sc.next();
+	    UserInfoController.userIdCheck(id);
 	}
 }

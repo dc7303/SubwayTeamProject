@@ -33,6 +33,29 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 		}
 		return result;
 	}
+	
+
+    @Override
+    public UserInfoDTO userIdCheck(String id) throws SQLException {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        UserInfoDTO userDTO = null;
+        try {
+            con = DBUtil.getConnection();
+            ps = con.prepareStatement("SELECT USER_ID, USER_PASS, USER_NAME, USER_PHONE, USER_EMAIL FROM USERS WHERE USER_ID=?");
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+            
+            if(rs.next()) {   //???????
+                userDTO = new UserInfoDTO(rs.getString(1), rs.getString(2), rs.getString(3),
+                        rs.getString(4), rs.getString(5));
+            }
+        }finally {
+            DBUtil.dbClose(rs, ps, con);
+        }
+        return userDTO;
+    }
 
 	@Override 
 	public UserInfoDTO userSignIn(String id, String pw) throws SQLException {
@@ -101,5 +124,6 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
 
 }
