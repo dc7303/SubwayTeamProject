@@ -7,8 +7,9 @@ public class IngredientDTO {
     private int ingredPrice15;
     private int ingredPrice30;
     private String ingredRecommendSauce;
-    
-    public IngredientDTO() {}
+
+    public IngredientDTO() {
+    }
 
     public IngredientDTO(String ingredName, String ingredCategory, int ingredCalorie, int ingredPrice15,
             int ingredPrice30, String ingredRecommendSauce) {
@@ -74,6 +75,5 @@ public class IngredientDTO {
         return ingredName + " | " + ingredCategory + " | " + ingredCalorie + " | " + ingredPrice15 + " | "
                 + ingredPrice30 + " | " + ingredRecommendSauce;
     }
-    
-    
+
 }

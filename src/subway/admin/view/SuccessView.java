@@ -13,13 +13,14 @@ public class SuccessView {
     public static void successMessage(String message) {
         System.out.println(message);
     }
-    
+
     /**
      * 유저 정보 출력
+     * 
      * @param list
      */
     public static void userSearch(List<UserInfoDTO> list) {
-        for(UserInfoDTO dto : list) {
+        for (UserInfoDTO dto : list) {
             System.out.println(dto);
         }
     }

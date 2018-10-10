@@ -13,7 +13,7 @@ import subway.admin.view.SuccessView;
 
 public class AdminController {
     private static AdminService service = new AdminServiceImpl();
-    
+
     /**
      * 유저 정보 조회.
      * 
@@ -42,13 +42,13 @@ public class AdminController {
         try {
             result = service.menuInsert(ingredDTO);
             SuccessView.successMessage("등록되었습니다.");
-        }catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
             FailView.errorMessage(e.getMessage());
         }
         return result;
     }
-    
+
     /**
      * 메뉴 수정
      * 
@@ -60,37 +60,23 @@ public class AdminController {
         try {
             result = service.menuUpdate(ingredDTO);
             SuccessView.successMessage("수정되었습니다.");
-        }catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
             FailView.errorMessage(e.getMessage());
         }
         return result;
     }
-    
+
     public static int menuDelete(String ingredName) {
         int result = 0;
         try {
             result = service.menuDelete(ingredName);
             SuccessView.successMessage("삭제되었습니다.");
-        }catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             FailView.errorMessage(e.getMessage());
         }
         return result;
     }
-    
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
