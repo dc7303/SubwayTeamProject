@@ -2,7 +2,9 @@ package subway.user.model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
@@ -44,10 +46,53 @@ public class OrderDAOImpl implements OrderDAO {
 	}
 
 	@Override
+	/*public List<OrderDTO> orderSelect(String userId) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<OrderDTO> list = new ArrayList<>();
+		String sql = "SELECT * FROM ORDERS WHERE lower(ORDER_USER) like lower(?) ";
+		try {
+			con = DBUtil.getConnection();
+			ps=con.prepareStatement(sql);
+			ps.setString(1, "%"+userId+"%");
+			rs=ps.executeQuery();
+			while(rs.next()) {
+				OrderDTO orderDTO = new OrderDTO(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),
+				rs.getInt(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12),rs.getString(13)	);
+				list.add(orderDTO);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally {
+			DBUtil.dbClose(rs, ps, con);
+		}
+		return list;
+	}*/
 	public List<OrderDTO> orderSelect(String userId) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<OrderDTO> list = new ArrayList<>();
+		String sql = "SELECT ingred_name, ingred_calorie, ingred_price_15, ingred_price_30, ingred_recommend_sauce "
+				+ "FROM INGREDIENTS where ingred_category='¸Þ´º'";
+		try {
+			con = DBUtil.getConnection();
+			ps=con.prepareStatement(sql);
+			//ps.setString(1, "%"+userId+"%");
+			rs=ps.executeQuery();
+			while(rs.next()) {
+				OrderDTO orderDTO = new OrderDTO(rs.getString(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getString(5));
+				list.add(orderDTO);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally {
+			DBUtil.dbClose(rs, ps, con);
+		}
+		return list;
 	}
+	
 
 	@Override
 	public List<OrderDTO> myMenuSelect(String userID) throws SQLException {
