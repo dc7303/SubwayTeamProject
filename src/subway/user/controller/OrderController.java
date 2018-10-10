@@ -1,6 +1,7 @@
 package subway.user.controller;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.omg.PortableInterceptor.SUCCESSFUL;
@@ -27,8 +28,16 @@ public class OrderController {
 	}
 	
 	public static List<OrderDTO> orderSelect(String userId) {
-		
-		return null;
+		List<OrderDTO> list = new ArrayList<>();
+		try{
+			list = orderService.orderSelect(userId);
+			System.out.println(userId+"님이 선택한 메뉴");
+			SuccessView.listView(list);
+			return list;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 	
 	public static List<OrderDTO> myMenuSelect(String userID) {

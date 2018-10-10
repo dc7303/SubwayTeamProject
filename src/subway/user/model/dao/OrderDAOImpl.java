@@ -47,9 +47,30 @@ public class OrderDAOImpl implements OrderDAO {
 
 	@Override
 	public List<OrderDTO> orderSelect(String userId) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<OrderDTO> list = new ArrayList<>();
+		String sql = "SELECT * FROM ORDERS WHERE lower(ORDER_USER) like lower(?) ";
+		try {
+			con = DBUtil.getConnection();
+			ps=con.prepareStatement(sql);
+			ps.setString(1, "%"+userId+"%");
+			rs=ps.executeQuery();
+			while(rs.next()) {
+				OrderDTO orderDTO = new OrderDTO(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),
+				rs.getInt(7),rs.getInt(8),rs.getString(9),rs.getString(10),rs.getString(11),rs.getInt(12),rs.getString(13)	);
+				list.add(orderDTO);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally {
+			DBUtil.dbClose(rs, ps, con);
+		}
+		return list;
 	}
+	
+	
 
 	@Override
 	public List<OrderDTO> myMenuSelect(String userID) throws SQLException {

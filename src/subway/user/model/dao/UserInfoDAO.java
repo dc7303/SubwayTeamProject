@@ -13,14 +13,26 @@ public interface UserInfoDAO {
 	int userSignUp (UserInfoDTO userDTO) throws SQLException; 
 	
 	/**
+     * 유저 아이디 체크
+     * @param id
+     * @return UserInfoDTO
+     * @throws SQLException
+     */
+    public UserInfoDTO userIdCheck(String id) throws SQLException;
+    
+	/**
 	 * 로그인 id와 pw 받아서 select 쿼리문 사용
 	 */
 	UserInfoDTO userSignIn (String id, String pw) throws SQLException;
+	
+	
 	
 	/**
 	 * 회원정보 수정 update 쿼리문 사용
 	 */
 	int userUpdate (UserInfoDTO userDTO) throws SQLException;
+	
+	
 	
 	/**
 	 * 나만의 메뉴 update 쿼리문 사용해서 menuDTO.getMenuNO 사용해서 나만의 메뉴 추가

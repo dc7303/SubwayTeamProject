@@ -16,6 +16,14 @@ public interface UserInfoService {
 	public int userSignUp(UserInfoDTO userDTO) throws SQLException;
 	
 	/**
+	 * 유저 아이디 체크
+	 * @param id
+	 * @return UserInfoDTO
+	 * @throws SQLException
+	 */
+	public UserInfoDTO userIdCheck(String id) throws SQLException;
+	
+	/**
 	 * 로그인 Service
 	 * @param id
 	 * @param pw

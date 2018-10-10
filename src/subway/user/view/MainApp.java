@@ -5,6 +5,9 @@ import java.util.Scanner;
 
 import subway.user.controller.OrderController;
 import subway.user.model.dto.OrderDTO;
+import subway.user.controller.UserInfoController;
+import subway.user.model.dao.UserInfoDAO;
+import subway.user.model.dto.UserInfoDTO;
 
 public class MainApp {
 	
@@ -14,7 +17,8 @@ public class MainApp {
 		
 		while(run){
 			System.out.println("*********************프로젝트 테스트*********************");
-			System.out.println("1.회원가입 | 2.로그인 | 3.회원정보 수정 | 4.회원탈퇴 | 5. OrderInsert | 6. orderSelect | 7.myMenuSelect | 8.종료");
+			System.out.println("1.회원가입 | 2.로그인 | 3.회원정보 수정 | 4.회원탈퇴 | 5. OrderInsert |"
+			        + " 6. orderSelect | 7.myMenuSelect | 8.아이디체크 | 9.종료");
 			System.out.print("번호입력 = >");
 			int select = sc.nextInt();
 			
@@ -27,7 +31,8 @@ public class MainApp {
 			case 5 : MainApp.orderInsert(sc); break;
 			case 6 : MainApp.orderSelect(sc); break;
 			case 7 : MainApp.myMenuSelect(sc); break;
-			case 8 : System.out.println("종료합니다."); run = false;
+			case 8 : MainApp.userIdCheck(sc); break;
+			case 9 : System.out.println("종료합니다."); run = false;
 			}
 		}
 	}
@@ -37,7 +42,23 @@ public class MainApp {
 	 * @param sc
 	 */
 	public static void userSignUp (Scanner sc){
-		
+	 System.out.println("ID를 입력하세요");
+	 String id = sc.next();
+   	 
+   	 System.out.println("PASSWORD를 입력하세요");
+   	 String pw = sc.next();
+   	 
+   	 System.out.println("이름을 입력하세요");
+   	 String name = sc.next();
+   	 
+   	 System.out.println("휴대폰 번호를 입력하세요");
+	 String phone = sc.next();
+	 
+	 System.out.println("email를 입력하세요");
+	 String email = sc.next();
+	 
+	 UserInfoDTO userDTO = new UserInfoDTO(id, pw, name, phone, email);
+	 UserInfoController.userSignUp(userDTO);
 	}
 	
 	/**
@@ -45,7 +66,14 @@ public class MainApp {
 	 * @param sc
 	 */
 	public static void userSignIn (Scanner sc) {
+		System.out.println("ID 입력 : ");
+		String id = sc.next();
 		
+		System.out.println("패스워드 입력 : ");
+		String pw = sc.next();
+		
+		UserInfoDTO userDTO = new UserInfoDTO(id, pw);
+		UserInfoController.userSignIn(id,pw);
 	}
 	
 	/**
@@ -53,7 +81,23 @@ public class MainApp {
 	 * @param sc
 	 */
 	public static void userUpdate (Scanner sc) {
+		System.out.println("ID를 입력하세요 : ");
+		String id = sc.next();  //???
 		
+		System.out.println("수정할 패스워드 입력 : ");
+		String pw = sc.next();
+		
+		System.out.println("수정할 이름 입력 : ");
+		String name = sc.next();
+		
+		System.out.println("수정할 phone 번호 입력 : ");
+		String phone = sc.next();
+		
+		System.out.println("수정할 이메일 입력 : ");
+		String email = sc.next();
+		
+		UserInfoDTO userDTO = new UserInfoDTO(id, pw, name, phone, email);
+		UserInfoController.userUpdate(userDTO);
 	}
 	
 	/**
@@ -111,9 +155,12 @@ public class MainApp {
 	/**
 	 * 사용자한테 보여지기 위해 select문 사용
 	 * @param sc
+	 * 아직 insert로 기본메뉴들을 넣지 않았음. 지금 2가지 / 로티세리와 폴드포크만 들어가 있음.
 	 */
 	public static void orderSelect (Scanner sc) {
-		
+		System.out.print("userId 입력해주세요 :  ");
+		String userId = sc.next();
+		OrderController.orderSelect(userId);
 	}
 	
 	/**
@@ -122,5 +169,11 @@ public class MainApp {
 	 */
 	public static void myMenuSelect (Scanner sc) {
 		List<OrderDTO>list = OrderController.myMenuSelect("C62");
+	}
+	
+	public static void userIdCheck (Scanner sc) {
+	    System.out.println("중복체크하실 아이디를 입력하세요");
+	    String id = sc.next();
+	    UserInfoController.userIdCheck(id);
 	}
 }
