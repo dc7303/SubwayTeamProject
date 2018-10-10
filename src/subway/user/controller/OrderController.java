@@ -8,7 +8,7 @@ public class OrderController {
 		
 	public static int orderInsert (OrderDTO orderDTO) {
 
-		return 0;
+		return 1;
 	}
 	
 	public static List<OrderDTO> orderSelect(String userId) {

@@ -111,7 +111,8 @@ public class HomeView extends JPanel implements ActionListener {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
+				F.add("OrderView",new OrderView(F));
+				F.getCardLayout().show(F.getContentPane(), "OrderView");
 
 			}
 		});

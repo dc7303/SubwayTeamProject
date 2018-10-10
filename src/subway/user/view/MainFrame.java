@@ -40,14 +40,14 @@ public class MainFrame extends JFrame {
 		 //Border lineBorderG = BorderFactory.createLineBorder(Color.black, 2);
 		 emptyBorder = BorderFactory.createEmptyBorder(5, 5, 5, 5);
 		lineBorderY = BorderFactory.createLineBorder(sub_yellow, 2);
-		lineBorderY = BorderFactory.createLineBorder(Color.white, 1);
+		lineBorderW = BorderFactory.createLineBorder(Color.white, 1);
 		 
 	
 		//ÆùÆ®
 		labelFont = new Font("HeaderFont",Font.BOLD, 25);
 		FieldFont = new Font("HeaderFont",Font.PLAIN, 25);
-		userFont = new Font("HeadrFont",Font.BOLD, 15);
-		titleFont = new Font("HeadrFont",Font.BOLD, 45);
+		userFont = new Font("HeaderFont",Font.BOLD, 15);
+		titleFont = new Font("HeaderFont",Font.BOLD, 45);
 		//favicon
 		
 		ImageIcon icon = new ImageIcon("img/subway_og.png");
@@ -67,7 +67,7 @@ public class MainFrame extends JFrame {
 		
 		
 		cards.show(this.getContentPane(), "Sign-in");
-		setSize(900,800);
+		setSize(900,1000);
 		setLocationRelativeTo(null);
 		setVisible(true);	
 

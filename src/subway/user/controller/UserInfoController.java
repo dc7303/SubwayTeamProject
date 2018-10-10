@@ -15,7 +15,23 @@ public class UserInfoController {
 		
 		return 1;
 	}
-	
+	/**
+	 * 유저 ID체크
+	 * @param userId
+	 * @return
+	 */
+	public static UserInfoDTO userIdCheck(String userId) {
+	    UserInfoDTO userDTO = null;
+	    try {
+	       // userDTO = service.userIdCheck(userId);
+	       
+	    }catch(Exception e) {
+	        e.printStackTrace();
+	        
+	    }
+	   // return new UserInfoDTO("C62", "123123");
+	    return userDTO;
+	}
 	/**
 	 * 로그인
 	 * @param id

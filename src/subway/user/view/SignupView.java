@@ -154,8 +154,9 @@ public class SignupView extends JPanel implements ActionListener{
 		}
 		else if(e.getSource() == btnDup) {
 			String id = fieldId.getText().trim();
-			//중복체크 -> 컨트롤러 생기면 수정
-			user=null;
+			//중복체크 
+			//user가 null이면 중복검사통과
+			user=UserInfoController.userIdCheck(id);
 			if(id.equals("")||id.length() >20||user!=null) {
 				FailView.errorMessage("불가능한 id입니다.");
 			}
