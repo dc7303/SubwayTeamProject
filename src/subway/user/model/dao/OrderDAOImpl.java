@@ -46,7 +46,7 @@ public class OrderDAOImpl implements OrderDAO {
 	}
 
 	@Override
-	/*public List<OrderDTO> orderSelect(String userId) throws SQLException {
+	public List<OrderDTO> orderSelect(String userId) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -68,30 +68,8 @@ public class OrderDAOImpl implements OrderDAO {
 			DBUtil.dbClose(rs, ps, con);
 		}
 		return list;
-	}*/
-	public List<OrderDTO> orderSelect(String userId) throws SQLException {
-		Connection con = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		List<OrderDTO> list = new ArrayList<>();
-		String sql = "SELECT ingred_name, ingred_calorie, ingred_price_15, ingred_price_30, ingred_recommend_sauce "
-				+ "FROM INGREDIENTS where ingred_category='¸Þ´º'";
-		try {
-			con = DBUtil.getConnection();
-			ps=con.prepareStatement(sql);
-			//ps.setString(1, "%"+userId+"%");
-			rs=ps.executeQuery();
-			while(rs.next()) {
-				OrderDTO orderDTO = new OrderDTO(rs.getString(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getString(5));
-				list.add(orderDTO);
-			}
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally {
-			DBUtil.dbClose(rs, ps, con);
-		}
-		return list;
 	}
+	
 	
 
 	@Override

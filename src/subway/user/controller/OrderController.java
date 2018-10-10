@@ -31,8 +31,8 @@ public class OrderController {
 		List<OrderDTO> list = new ArrayList<>();
 		try{
 			list = orderService.orderSelect(userId);
-			System.out.println(userId+"님이 선택할 수 있는 메뉴");
-			SuccessView.SelectAll(list);
+			System.out.println(userId+"님이 선택한 메뉴");
+			SuccessView.listView(list);
 			return list;
 		}catch(Exception e) {
 			e.printStackTrace();
