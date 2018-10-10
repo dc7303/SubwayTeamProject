@@ -44,7 +44,7 @@ public class SigninView extends JPanel implements ActionListener {
 		try {
 			img = ImageIO.read(new File("img/subway_main.png"));
 		} catch (IOException e) {
-			System.out.println("이미지 불러오기 실패");
+			FailView.errorMessage("이미지 불러오기 실패");
 			System.exit(0);
 		}
 
@@ -66,16 +66,18 @@ public class SigninView extends JPanel implements ActionListener {
 		fieldPass.setBorder(BorderFactory.createCompoundBorder(MainFrame.lineBorderG, MainFrame.emptyBorder));
 
 		btnSignIn.setFont(MainFrame.labelFont);
-		btnSignIn.setBorderPainted(true);
+		btnSignIn.setBorderPainted(false);
 		btnSignIn.setFocusPainted(false);
-		btnSignIn.setBorder(BorderFactory.createCompoundBorder(MainFrame.lineBorderY, MainFrame.emptyBorder));
-		btnSignIn.setContentAreaFilled(false);
+		btnSignIn.setContentAreaFilled(true);
+		btnSignIn.setBackground(MainFrame.sub_yellow);
+		btnSignIn.setForeground(Color.white);
 
 		btnSignUp.setFont(MainFrame.labelFont);
-		btnSignUp.setBorderPainted(true);
+		btnSignUp.setBorderPainted(false);
 		btnSignUp.setFocusPainted(false);
-		btnSignUp.setBorder(BorderFactory.createCompoundBorder(MainFrame.lineBorderY, MainFrame.emptyBorder));
-		btnSignUp.setContentAreaFilled(false);
+		btnSignUp.setContentAreaFilled(true);
+		btnSignUp.setBackground(MainFrame.sub_green);
+		btnSignUp.setForeground(Color.white);
 
 		innerJp.add(labelId);
 		innerJp.add(fieldId);

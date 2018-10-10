@@ -26,8 +26,8 @@ public class UserInfoController {
 		
 		UserInfoDTO user = new UserInfoDTO("C62", "123123");
 		
-		//return user;
-		return null;
+		return user;
+		//return null;
 	}
 	
 	/**

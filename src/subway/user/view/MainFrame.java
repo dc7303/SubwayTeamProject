@@ -3,8 +3,10 @@ package subway.user.view;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.net.URL;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
@@ -15,6 +17,8 @@ public class MainFrame extends JFrame {
 	public static Border lineBorderY;
 	public static Font labelFont;
 	public static Font FieldFont;
+	public static Color sub_green;
+	public static Color sub_yellow;
 	private CardLayout cards = new CardLayout();
 	private static String UserId;
 	
@@ -22,16 +26,25 @@ public class MainFrame extends JFrame {
 		super("subway");
 		
 		//SigninView signIn = new SigninView();
+		//색
+		sub_green =  Color.decode("#009132");
+		sub_yellow =  Color.decode("#FFBF00");
+		
 		//테두리
-		 lineBorderG = BorderFactory.createLineBorder(Color.decode("#00B54C"), 2);
+		 lineBorderG = BorderFactory.createLineBorder(sub_green, 2);
 		 //Border lineBorderG = BorderFactory.createLineBorder(Color.black, 2);
 		 emptyBorder = BorderFactory.createEmptyBorder(5, 5, 5, 5);
-		lineBorderY = BorderFactory.createLineBorder(Color.decode("#FEED02"), 2);
+		lineBorderY = BorderFactory.createLineBorder(sub_yellow, 2);
 		 
 	
 		//폰트
 		labelFont = new Font("HeaderFont",Font.BOLD, 25);
 		FieldFont = new Font("HeaderFont",Font.PLAIN, 25);
+		
+		//favicon
+		
+		ImageIcon icon = new ImageIcon("img/subway_og.png");
+		setIconImage(icon.getImage());
 		
 		
 		
