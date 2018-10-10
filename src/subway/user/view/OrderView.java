@@ -60,7 +60,7 @@ public class OrderView extends JPanel implements ActionListener {
 		setBackground(Color.WHITE);
 		
 		
-		//
+		//폰트
 		Font labelFont = new Font("HeaderFont", Font.BOLD, 20);
 		Font comboFont = new Font("HeaderFont", Font.PLAIN, 20);
 		
@@ -188,11 +188,25 @@ public class OrderView extends JPanel implements ActionListener {
 			}
 			else {
 				SuccessView.successMessage("주문을 완료했습니다.");
+				init();
 				F.add("orderResultView",new OrderResultView(F));
 				F.getCardLayout().show(F.getContentPane(), "orderResultView");
 			}
 		}
 
+	}
+	private void init() {
+		comboMenu.setSelectedIndex(0);
+		comboLength.setSelectedIndex(0);
+		comboBread.setSelectedIndex(0);
+		comboExtra.setSelectedIndex(0);
+		comboSauce.setSelectedIndex(0);
+		fieldText.setText("");
+		labelPredict.setText("");
+		labelReSauce.setText("");
+		labelReSauceTitle.setVisible(false);
+		btnOrder.setEnabled(false);
+		
 	}
 
 	class ImgPanel extends JPanel {
