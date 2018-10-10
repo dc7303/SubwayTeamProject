@@ -9,9 +9,7 @@ public class UserInfoDTO {
 	private String userName;	//NAME
 	private String userPhone;	//PHONE
 	private String userEmail;	//EMAIL
-	private String userMyMenu1;	//나만의 메뉴1
-	private String userMyMenu2;	//나만의 메뉴2
-	private String userMyMenu3;	//나만의 메뉴3
+
 	
 	public UserInfoDTO() {}
 
@@ -26,24 +24,6 @@ public class UserInfoDTO {
 		this.userName = userName;
 		this.userPhone = userPhone;
 		this.userEmail = userEmail;
-	}
-
-	public UserInfoDTO(String userId, String userPw, String userName, String userPhone, String userEmail,
-			String userMyMenu1) {
-		this(userId, userPw, userName, userPhone, userEmail);
-		this.userMyMenu1 = userMyMenu1;
-	}
-	
-	public UserInfoDTO(String userId, String userPw, String userName, String userPhone, String userEmail,
-			String userMyMenu1, String userMyMenu2) {
-		this(userId, userPw, userName, userPhone, userEmail, userMyMenu1);
-		this.userMyMenu2 = userMyMenu2;
-	}
-	
-	public UserInfoDTO(String userId, String userPw, String userName, String userPhone, String userEmail,
-			String userMyMenu1, String userMyMenu2, String userMyMenu3) {
-		this(userId, userPw, userName, userPhone, userEmail, userMyMenu1, userMyMenu2);
-		this.userMyMenu3 = userMyMenu3;
 	}
 
 	public String getUserId() {
@@ -85,31 +65,13 @@ public class UserInfoDTO {
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
-
-	public String getUserMyMenu() {
-		return userMyMenu1;
-	}
-
-	public void setUserMyMenu(String userMyMenu) {
-		this.userMyMenu1 = userMyMenu;
-	}
-
-	public String getUserMyMenu2() {
-		return userMyMenu2;
-	}
-
-	public void setUserMyMenu2(String userMyMenu2) {
-		this.userMyMenu2 = userMyMenu2;
-	}
-
-	public String getUserMyMenu3() {
-		return userMyMenu3;
-	}
-
-	public void setUserMyMenu3(String userMyMenu3) {
-		this.userMyMenu3 = userMyMenu3;
-	}
 	
+	//테스트 용 임시 toString 메소드
+	@Override
+	public String toString() {
+		return userId + " | " + userPw + " | " + userName + " | "
+				+ userPhone + " | " + userEmail;
+	}
 	
 	
 	
