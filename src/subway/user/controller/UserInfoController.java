@@ -7,6 +7,7 @@ import subway.user.view.FailView;
 import subway.user.view.SuccessView;
 
 public class UserInfoController {
+
     private static UserInfoService service = new UserInfoServiceImpl();
 
     /**
