@@ -18,16 +18,15 @@ public class UserInfoDAOImpl implements UserInfoDAO {
         Connection con = null;
         PreparedStatement ps = null;
         int result = 0;
+        String sql = "INSERT INTO USERS(USER_ID,USER_PASS,USER_NAME,USER_PHONE,USER_EMAIL) VALUES (?,?,?,?,?)";
         try {
             con = DBUtil.getConnection();
-            ps = con.prepareStatement(
-                    "INSERT INTO USERS(USER_ID, USER_PASS, USER_NAME, USER_PHONE, USER_EMAIL) VALUES(?,?,?,?,?)");
+            ps = con.prepareStatement(sql);
             ps.setString(1, userDTO.getUserId());
             ps.setString(2, userDTO.getUserPw());
             ps.setString(3, userDTO.getUserName());
             ps.setString(4, userDTO.getUserPhone());
             ps.setString(5, userDTO.getUserEmail());
-
             result = ps.executeUpdate();
         } finally {
             DBUtil.dbClose(ps, con);

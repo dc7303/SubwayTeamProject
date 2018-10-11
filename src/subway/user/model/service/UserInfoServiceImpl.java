@@ -21,9 +21,6 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Override
     public UserInfoDTO userIdCheck(String id) throws SQLException {
         UserInfoDTO userDTO = userDAO.userIdCheck(id);
-        if (userDTO != null) {
-            throw new SQLException("이미 존재하는 아이디입니다.");
-        }
         return userDTO;
     }
 

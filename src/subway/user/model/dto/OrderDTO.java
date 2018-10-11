@@ -15,7 +15,6 @@ public class OrderDTO {
     private int orderQuantity; // 수량
     private int orderBasket; // 바스켓 아이디
 
-
     public OrderDTO() {
     }
 

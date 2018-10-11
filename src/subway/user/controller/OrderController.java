@@ -77,6 +77,7 @@ public class OrderController {
         List<IngredientDTO> list = new ArrayList<>();
         try {
             list = orderService.menuList();
+<<<<<<< HEAD
            
         } catch (SQLException e) {
             e.printStackTrace();
@@ -90,6 +91,9 @@ public class OrderController {
         try {
             list = orderService.menuList(category);
            
+=======
+ 
+>>>>>>> 31d5c934b344853e409ddcf47f974a31670284ed
         } catch (SQLException e) {
             e.printStackTrace();
             FailView.errorMessage(e.getMessage());
@@ -102,6 +106,10 @@ public class OrderController {
         OrderDTO orderDTO = null;
         try {
             orderDTO = orderService.selectOrderById(id);
+<<<<<<< HEAD
+=======
+ 
+>>>>>>> 31d5c934b344853e409ddcf47f974a31670284ed
         }catch(SQLException e) {
             e.printStackTrace();
             FailView.errorMessage(e.getMessage());

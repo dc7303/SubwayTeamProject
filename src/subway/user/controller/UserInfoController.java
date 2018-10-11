@@ -19,7 +19,7 @@ public class UserInfoController {
         int result = 0;
         try {
             result = service.userSignUp(userDTO);
-            SuccessView.successMessage(userDTO.getUserName() + "님 가입 되었습니다.");
+            
         } catch (Exception e) {
             FailView.errorMessage(e.getMessage());
         }
@@ -36,9 +36,6 @@ public class UserInfoController {
         UserInfoDTO userDTO = null;
         try {
             userDTO = service.userIdCheck(userId);
-            if (userDTO == null) {
-                SuccessView.successMessage("가입 가능한 아이디입니다.");
-            }
         } catch (Exception e) {
             e.printStackTrace();
             FailView.errorMessage(e.getMessage());
