@@ -39,7 +39,7 @@ public class OrderDAOImpl implements OrderDAO {
             ps.setString(9, orderDTO.getOrderText());
             ps.setString(10, orderDTO.getOrderIsMyMenu());
             ps.setInt(11, orderDTO.getOrderQuantity());
-            ps.setString(12, orderDTO.getOrderBasket());
+            ps.setInt(12, orderDTO.getOrderBasket());
             result = ps.executeUpdate();
 
             return result;
@@ -63,7 +63,7 @@ public class OrderDAOImpl implements OrderDAO {
             while (rs.next()) {
                 OrderDTO orderDTO = new OrderDTO(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4),
                         rs.getString(5), rs.getString(6), rs.getInt(7), rs.getInt(8), rs.getString(9), rs.getString(10),
-                        rs.getString(11), rs.getInt(12), rs.getString(13));
+                        rs.getString(11), rs.getInt(12), rs.getInt(13));
                 list.add(orderDTO);
             }
         } catch (Exception e) {
@@ -91,7 +91,7 @@ public class OrderDAOImpl implements OrderDAO {
                         rs.getString("ORDER_EXTRA"), rs.getString("ORDER_BREAD"), rs.getString("ORDER_SAUCE"),
                         rs.getInt("ORDER_PRICE"), rs.getInt("ORDER_CALORIE"), rs.getString("ORDER_USER"),
                         rs.getString("ORDER_TEXT"), rs.getString("ORDER_IS_MY_MENU"), rs.getInt("ORDER_QUANTITY"),
-                        rs.getString("ORDER_BASKET")));
+                        rs.getInt("ORDER_BASKET")));
 
             }
             return list;
@@ -122,7 +122,7 @@ public class OrderDAOImpl implements OrderDAO {
             ps.setString(9, orderDTO.getOrderText());
             ps.setString(10, orderDTO.getOrderIsMyMenu());
             ps.setInt(11, orderDTO.getOrderQuantity());
-            ps.setString(12, orderDTO.getOrderBasket());
+            ps.setInt(12, orderDTO.getOrderBasket());
             ps.setInt(13, orderDTO.getOrderId());
             result = ps.executeUpdate();
 
@@ -216,7 +216,7 @@ public class OrderDAOImpl implements OrderDAO {
                         rs.getString("ORDER_EXTRA"), rs.getString("ORDER_BREAD"), rs.getString("ORDER_SAUCE"),
                         rs.getInt("ORDER_PRICE"), rs.getInt("ORDER_CALORIE"), rs.getString("ORDER_USER"),
                         rs.getString("ORDER_TEXT"), rs.getString("ORDER_IS_MY_MENU"), rs.getInt("ORDER_QUANTITY"),
-                        rs.getString("ORDER_BASKET"));
+                        rs.getInt("ORDER_BASKET"));
             }
         } catch (Exception e) {
             e.printStackTrace();

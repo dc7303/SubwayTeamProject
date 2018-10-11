@@ -70,9 +70,9 @@ public class OrderListView extends JPanel implements ActionListener {
 		 */
 
 		OrderDTO orderDTO = new OrderDTO(1, 30, "로티세리 치킨", "에그마요", "허니오트", "리치시저", 9000, 1035, "C62", "배달가능?", "TRUE",
-				2, "2");
+				2, 2);
 		OrderDTO orderDTO2 = new OrderDTO(2, 30, "에그마요", "에그마요", "허니오트", "리치시저", 9000, 1035, "C62", "배달가능?", "TRUE", 2,
-				"2");
+				2);
 		Vector<Object> vec = new Vector<>();
 		vec.add(orderDTO.getOrderId());
 		vec.add(orderDTO.getOrderMenu());

@@ -80,7 +80,7 @@ public class OrderResultView extends JPanel implements ActionListener {
 		 * orderCalorie, String orderUser, String orderText, String orderIsMyMenu, int
 		 * orderQuantity, String orderBasket)
 		 */
-		orderDTO = new OrderDTO(1, 30, "로티세리 치킨", "에그마요", "허니오트", "리치시저", 9000, 1035, "C62", "배달가능?", "TRUE", 2, "2");
+		orderDTO = new OrderDTO(1, 30, "로티세리 치킨", "에그마요", "허니오트", "리치시저", 9000, 1035, "C62", "배달가능?", "TRUE", 2, 2);
 		System.out.println(orderDTO.getOrderMenu());
 		comboMenu.setText(orderDTO.getOrderMenu());
 		comboLength.setText(Integer.toString(orderDTO.getOrderBreadLength()) + "cm");
