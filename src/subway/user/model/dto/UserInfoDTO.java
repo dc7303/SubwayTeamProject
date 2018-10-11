@@ -4,6 +4,7 @@ package subway.user.model.dto;
  * 사용자 정보 DTO, toString은 재정의 보류
  */
 public class UserInfoDTO {
+
     private String userId; // ID
     private String userPw; // PW
     private String userName; // NAME
@@ -78,5 +79,6 @@ public class UserInfoDTO {
     public String toString() {
         return userId + " | " + userPw + " | " + userName + " | " + userPhone + " | " + userEmail;
     }
+
 
 }

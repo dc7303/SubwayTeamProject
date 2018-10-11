@@ -1,6 +1,7 @@
 package subway.admin.controller;
 
 import java.sql.SQLException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +9,7 @@ import subway.admin.dto.IngredientDTO;
 import subway.admin.service.AdminService;
 import subway.admin.service.AdminServiceImpl;
 import subway.user.model.dto.UserInfoDTO;
-import subway.user.view.FailView;
+import subway.admin.view.FailView;
 import subway.admin.view.SuccessView;
 
 public class AdminController {
