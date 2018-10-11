@@ -25,6 +25,13 @@ public class UserInfoDTO {
 		this.userPhone = userPhone;
 		this.userEmail = userEmail;
 	}
+	
+	public UserInfoDTO(String userId, String userName, String userPhone, String userEmail) {
+	    this.userId = userId;
+	    this.userName = userName;
+	    this.userPhone = userPhone;
+	    this.userEmail = userEmail;
+	}
 
 	public String getUserId() {
 		return userId;
