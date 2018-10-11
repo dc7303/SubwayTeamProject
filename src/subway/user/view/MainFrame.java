@@ -25,8 +25,8 @@ public class MainFrame extends JFrame {
 	public static Color sub_grey;
 	private CardLayout cards = new CardLayout();
 	private static String UserId;
-	private static int orderId;
-	private static String callBy;
+	private static int orderId=0;
+	private static String callBy="";
 	
 	
 	public MainFrame() {

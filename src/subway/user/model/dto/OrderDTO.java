@@ -14,9 +14,6 @@ public class OrderDTO {
     private String orderIsMyMenu; // 나만의 메뉴
     private int orderQuantity; // 수량
     private String orderBasket; // 바스켓 아이디
-    private int size15;
-    private int size30;
-    String reSauce;
 
     public OrderDTO() {
     }

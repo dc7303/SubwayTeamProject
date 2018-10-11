@@ -101,6 +101,7 @@ public class SigninView extends JPanel implements ActionListener {
 						if(user == null) {
 							FailView.errorMessage("입력하신 정보와 일치한 회원이 없습니다.");
 						}
+						
 						F.setUserId(user.getUserId());
 						F.add("Home",new HomeView(F));
 						F.getCardLayout().show(F.getContentPane(), "Home");

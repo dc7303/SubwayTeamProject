@@ -2,6 +2,7 @@ package subway.user.view;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,6 +17,7 @@ import java.util.Vector;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -23,6 +25,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import subway.user.controller.OrderController;
 import subway.user.model.dto.OrderDTO;
 import subway.user.view.HomeView.ImgPanel;
 
@@ -40,12 +43,12 @@ public class OrderListView extends JPanel implements ActionListener {
 	private JLabel labelTitle = new JLabel("최근주문");
 	private JLabel labelSelect = new JLabel("주문을 선택해주세요");
 	private JButton btnOrder = new JButton("재주문");
-
+	private JComboBox comboCrud;
 	private JButton btnHome = new JButton();
 	List<Vector<Object>> list = new ArrayList<>();
-	
 
 	public OrderListView(JFrame frame) {
+
 		F = (MainFrame) frame;
 		// 이미지 로드
 		try {
@@ -91,6 +94,10 @@ public class OrderListView extends JPanel implements ActionListener {
 		for (Vector<Object> v : list) {
 			dt.addRow(v);
 		}
+
+		// mymenu관련 설정
+		String[] crud = { "생성", "삭제", "수정", "주문" };
+		comboCrud = new JComboBox(crud);
 
 		// 위치설정
 		// 테이블 설정
@@ -191,8 +198,14 @@ public class OrderListView extends JPanel implements ActionListener {
 			}
 		});
 		btnOrder.addActionListener(this);
-		
-		
+
+		// 마이메뉴에서 왔을시 세팅
+		if (F.getCallBy().equals("mymenu")) {
+			list = OrderController.orderSelectVector(F.getUserId(), true);
+			addRowTable(list);
+			initMyMenu();
+		}
+
 		// 현재패널에 추가
 		add(btnHome);
 		add(imgPanel);
@@ -203,7 +216,9 @@ public class OrderListView extends JPanel implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == btnOrder) {
+		if (e.getSource() == btnOrder && F.getCallBy().equals("mymenu")) {
+			
+		} else if (e.getSource() == btnOrder) {
 			F.setCallBy("order");
 			F.add("OrderView", new OrderView(F));
 			F.getCardLayout().show(F.getContentPane(), "OrderView");
@@ -230,4 +245,22 @@ public class OrderListView extends JPanel implements ActionListener {
 		}
 	}
 
+	/*
+	 * initMyMenu 마이메뉴 스타일로 요소들 재배열
+	 */
+	private void initMyMenu() {
+		// 타이틀 바꿈
+		labelTitle.setText("My_Menu");
+		labelTitle.setBounds(340, 150, 300, 50);
+		// 기존 요소 재배열 labelSelect.setBounds(200, 300, 300, 50);
+		labelSelect.setBounds(50, 300, 300, 50);
+		btnOrder.setBounds(600, 300, 200, 50);
+		String[] arr = { "생성", "삭제", "수정", "주문" };
+		comboCrud = new JComboBox(arr);
+		comboCrud.setBounds(400, 300, 100, 50);
+		comboCrud.setFont(new Font("HeaderFont", Font.BOLD, 20));
+		btnOrder.setEnabled(true);
+		btnOrder.setText("실행");
+		add(comboCrud);
+	}
 }

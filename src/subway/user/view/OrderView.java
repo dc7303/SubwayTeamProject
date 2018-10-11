@@ -90,7 +90,8 @@ public class OrderView extends JPanel implements ActionListener {
 		}
 		// my_menu持失
 		else if (F.getCallBy().equals("create")) {
-			init();
+			//init();
+			System.out.println(F.getCallBy());
 			btnOrder.setText("持失");
 		}
 
