@@ -1,9 +1,9 @@
 package subway.user.controller;
 
 import java.sql.SQLException;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import subway.admin.dto.IngredientDTO;
 import subway.user.model.dto.OrderDTO;
@@ -41,6 +41,18 @@ public class OrderController {
         return list;
     }
 
+    public static List<Vector<Object>> orderSelectVector(String userId, boolean isMyMenu){
+		List<Vector<Object>> vList = new ArrayList<>();
+		try {
+			vList = orderService.orderSelectVector(userId, isMyMenu);
+			SuccessView.vListView(vList);
+		}catch(Exception e){
+			e.printStackTrace();
+			FailView.errorMessage(e.getMessage());
+		}
+		return vList;
+	}
+    
     public static List<OrderDTO> myMenuSelect(String userID) {
         List<OrderDTO> list = null;
         try {
