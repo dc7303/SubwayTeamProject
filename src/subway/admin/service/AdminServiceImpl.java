@@ -7,6 +7,7 @@ import java.util.List;
 import subway.admin.dao.AdminDAO;
 import subway.admin.dao.AdminDAOImpl;
 import subway.admin.dto.IngredientDTO;
+import subway.user.model.dto.OrderDTO;
 import subway.user.model.dto.UserInfoDTO;
 
 public class AdminServiceImpl implements AdminService {
@@ -40,6 +41,16 @@ public class AdminServiceImpl implements AdminService {
             throw new SQLException("메뉴 수정에 실패하였습니다.");
         }
         return result;
+    }
+
+    @Override
+    public int menuDelete(String ingredName) throws SQLException {
+        int result = 0;
+        result = adminDAO.menuDelete(ingredName);
+        if(result == 0) {
+            throw new SQLException("삭제 실패했습니다.");
+        }
+        return 0;
     }
 
 }

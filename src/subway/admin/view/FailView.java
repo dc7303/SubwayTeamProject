@@ -1,7 +1,7 @@
 package subway.admin.view;
 
 public class FailView {
-    
+
     /**
      * 실패 메세지 출력
      * 
