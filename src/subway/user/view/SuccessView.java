@@ -22,4 +22,8 @@ public class SuccessView {
             System.out.println(list.get(i));
         }
     }
+    
+    public static void selectOrder(OrderDTO orderDTO) {
+        System.out.println(orderDTO);
+    }
 }

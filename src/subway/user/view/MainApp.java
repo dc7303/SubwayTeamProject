@@ -19,7 +19,7 @@ public class MainApp {
 		while(run){
 			System.out.println("*********************프로젝트 테스트*********************");
 			System.out.println("1.회원가입 | 2.로그인 | 3.회원정보 수정 | 4.회원탈퇴 | 5. OrderInsert |"
-			        + " 6. orderSelect | 7.myMenuSelect | 8.아이디체크 | 9.메뉴리스트 | 10.종료");
+			        + " 6. orderSelect | 7.myMenuSelect | 8.아이디체크 | 9.메뉴리스트 | 10.orderSelectById | 11.종료");
 			System.out.print("번호입력 = >");
 			int select = sc.nextInt();
 			
@@ -34,7 +34,8 @@ public class MainApp {
 			case 7 : MainApp.myMenuSelect(sc); break;
 			case 8 : MainApp.userIdCheck(sc); break;
 			case 9 : MainApp.menuList(); break;
-			case 10 : System.out.println("종료합니다."); run = false;
+			case 10 : MainApp.selectOrderById(sc); break;
+			case 11 : System.out.println("종료합니다."); run = false;
 			}
 		}
 	}
@@ -185,6 +186,12 @@ public class MainApp {
 	
 	public static void menuList () {
 	    List<IngredientDTO> list = OrderController.menuList();
+	}
+	
+	public static void selectOrderById(Scanner sc) {
+	    System.out.println("orderId를 입력해주세요");
+	    int id = sc.nextInt();
+	    OrderController.selectOrderById(id);
 	}
 	
 }

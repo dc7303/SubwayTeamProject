@@ -62,4 +62,16 @@ public class OrderController {
         }
         return list;
     }
+    
+    public static OrderDTO selectOrderById(int id) {
+        OrderDTO orderDTO = null;
+        try {
+            orderDTO = orderService.selectOrderById(id);
+            SuccessView.selectOrder(orderDTO);
+        }catch(SQLException e) {
+            e.printStackTrace();
+            FailView.errorMessage(e.getMessage());
+        }
+        return orderDTO;
+    }
 }

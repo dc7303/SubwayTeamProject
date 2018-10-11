@@ -122,4 +122,31 @@ public class OrderDAOImpl implements OrderDAO {
         }
     }
 
+    @Override
+    public OrderDTO selectOrderById(int id) throws SQLException {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        OrderDTO orderDTO = new OrderDTO();
+        String sql = "SELECT * FROM ORDERS WHERE order_id = ?";
+        try {
+            con = DBUtil.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                orderDTO = new OrderDTO(rs.getInt("ORDER_ID"), rs.getInt("ORDER_BREAD_LEN"), rs.getString("ORDER_MENU"),
+                        rs.getString("ORDER_EXTRA"), rs.getString("ORDER_BREAD"), rs.getString("ORDER_SAUCE"),
+                        rs.getInt("ORDER_PRICE"), rs.getInt("ORDER_CALORIE"), rs.getString("ORDER_USER"),
+                        rs.getString("ORDER_TEXT"), rs.getString("ORDER_IS_MY_MENU"), rs.getInt("ORDER_QUANTITY"),
+                        rs.getString("ORDER_BASKET"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DBUtil.dbClose(rs, ps, con);
+        }
+        return orderDTO;
+    }
+
 }

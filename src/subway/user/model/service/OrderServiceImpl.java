@@ -44,4 +44,13 @@ public class OrderServiceImpl implements OrderService {
         return list;
     }
 
+    @Override
+    public OrderDTO selectOrderById(int id) throws SQLException {
+        OrderDTO orderDTO = orderDAO.selectOrderById(id);
+        if(orderDTO == null) {
+            throw new SQLException("주문내역이 존재하지 않습니다.");
+        }
+        return orderDTO;
+    }
+
 }
