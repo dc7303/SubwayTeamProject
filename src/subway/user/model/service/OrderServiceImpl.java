@@ -34,7 +34,24 @@ public class OrderServiceImpl implements OrderService {
         }
         return list;
     }
-
+    
+   
+    public int myMenuUpdate(OrderDTO orderDTO) throws SQLException {
+        int result = orderDAO.myMenuUpdate(orderDTO);
+        if (result == 0) {
+            throw new SQLException("MY MENU 수정 실패");
+        }
+        return result;
+    }
+    
+    public int myMenuDelete(String userID) throws SQLException {
+    	int result = orderDAO.myMenuDelete(userID);
+        if (result == 0) {
+            throw new SQLException("MY MENU 삭제 실패");
+        }
+        return result;	
+    }
+    
     @Override
     public List<IngredientDTO> menuList() throws SQLException {
         List<IngredientDTO> list = orderDAO.menuList();

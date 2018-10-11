@@ -19,6 +19,10 @@ public interface OrderService {
 
     public List<OrderDTO> myMenuSelect(String userID) throws SQLException;
 
+    public int myMenuUpdate(OrderDTO orderDTO) throws SQLException;
+    
+    public int myMenuDelete(String orderID) throws SQLException;
+    
     public List<IngredientDTO> menuList() throws SQLException;
 
 }
