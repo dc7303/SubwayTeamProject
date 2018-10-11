@@ -1,10 +1,13 @@
 package subway.user.view;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -40,6 +43,7 @@ public class OrderResultView extends JPanel implements ActionListener {
 	private JTextArea fieldText = new JTextArea(4, 20);
 	private JButton btnOrder = new JButton("추가주문");
 	BufferedImage img = null;
+	private JButton btnHome = new JButton();
 	private List<OrderDTO> list;
 	private OrderDTO orderDTO;
 
@@ -65,24 +69,27 @@ public class OrderResultView extends JPanel implements ActionListener {
 		ImgPanel imgPanel = new ImgPanel();
 		imgPanel.setBounds(340, 50, 204, 40);
 
-		//해당 주문select & 값입력
-		/*list = OrderController.orderSelect(F.getUserId());
-		orderDTO =list.get(0);
-		public OrderDTO(int orderId, int orderBreadLength, String orderMenu, String orderExtra, String orderBread,
-			String orderSauce, int orderPrice, int orderCalorie, String orderUser, String orderText,
-			String orderIsMyMenu, int orderQuantity, String orderBasket)
-		*/
-		orderDTO = new OrderDTO(1,30,"로티세리 치킨", "에그마요","허니오트","리치시저",
-				  9000,1035,"C62","배달가능?","TRUE",2,"2");
+		btnHome.setBounds(340, 50, 204, 40);
+		btnHome.setBorderPainted(false);
+		btnHome.setContentAreaFilled(false);
+		// 해당 주문select & 값입력
+		/*
+		 * list = OrderController.orderSelect(F.getUserId()); orderDTO =list.get(0);
+		 * public OrderDTO(int orderId, int orderBreadLength, String orderMenu, String
+		 * orderExtra, String orderBread, String orderSauce, int orderPrice, int
+		 * orderCalorie, String orderUser, String orderText, String orderIsMyMenu, int
+		 * orderQuantity, String orderBasket)
+		 */
+		orderDTO = new OrderDTO(1, 30, "로티세리 치킨", "에그마요", "허니오트", "리치시저", 9000, 1035, "C62", "배달가능?", "TRUE", 2, "2");
 		System.out.println(orderDTO.getOrderMenu());
 		comboMenu.setText(orderDTO.getOrderMenu());
-		comboLength.setText(Integer.toString(orderDTO.getOrderBreadLength())+"cm");
+		comboLength.setText(Integer.toString(orderDTO.getOrderBreadLength()) + "cm");
 		comboBread.setText(orderDTO.getOrderBread());
 		comboExtra.setText(orderDTO.getOrderExtra());
 		comboSauce.setText(orderDTO.getOrderSauce());
 		fieldText.setText(orderDTO.getOrderText());
-		labelPredict.setText("총 "+orderDTO.getOrderCalorie()+"kcal "+orderDTO.getOrderPrice()+"원");
-		
+		labelPredict.setText("총 " + orderDTO.getOrderCalorie() + "kcal " + orderDTO.getOrderPrice() + "원");
+
 		// 위치등록
 		labelTitle.setBounds(340, 150, 200, 50);
 		labelTitle.setFont(MainFrame.titleFont);
@@ -127,10 +134,39 @@ public class OrderResultView extends JPanel implements ActionListener {
 
 		// 이벤트추가
 		btnOrder.addActionListener(this);
+		btnHome.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// 홈으로 이동
+				F.getCardLayout().show(F.getContentPane(), "Home");
+			}
+		});
 
 		// 패널추가
 		// add(comboLength);
-
+		add(btnHome);
 		add(imgPanel);
 		add(labelTitle);
 		add(labelMenu);
@@ -151,7 +187,7 @@ public class OrderResultView extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()==btnOrder) {
+		if (e.getSource() == btnOrder) {
 			F.getCardLayout().show(F.getContentPane(), "OrderView");
 		}
 	}

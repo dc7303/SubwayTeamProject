@@ -30,9 +30,10 @@ public class HomeView extends JPanel implements ActionListener {
 	private JButton btnOrder = new JButton("주문하기");
 	private JButton btnRecent = new JButton("최근주문");
 	private JButton btnMyMenu = new JButton("나의메뉴");
+	private JButton btnHome = new JButton();
 	private JLabel labelId;
 	private JLabel labelWelcome;
-	
+
 	public HomeView(JFrame frame) {
 		F = (MainFrame) frame;
 		UserName = F.getUserId();
@@ -51,7 +52,7 @@ public class HomeView extends JPanel implements ActionListener {
 
 		setLayout(null);
 		setBackground(Color.white);
-		
+
 		labelId.setBounds(50, 0, 100, 50);
 		labelId.setFont(MainFrame.userFont);
 		labelWelcome.setBounds(150, 0, 100, 50);
@@ -66,7 +67,6 @@ public class HomeView extends JPanel implements ActionListener {
 		btnOrder.setFocusPainted(false);
 		btnOrder.setContentAreaFilled(true);
 		btnOrder.setBackground(Color.white);
-		
 
 		btnRecent.setFont(MainFrame.labelFont);
 		btnRecent.setBorderPainted(false);
@@ -79,7 +79,13 @@ public class HomeView extends JPanel implements ActionListener {
 		btnMyMenu.setFocusPainted(false);
 		btnMyMenu.setContentAreaFilled(true);
 		btnMyMenu.setBackground(Color.white);
-		
+
+		// 로고홈버튼
+		btnHome.setBounds(340, 50, 204, 40);
+		btnHome.setBorderPainted(false);
+		btnHome.setContentAreaFilled(false);
+
+		// 이벤트리스너
 		btnOrder.addMouseListener(new MouseListener() {
 
 			@Override
@@ -98,20 +104,20 @@ public class HomeView extends JPanel implements ActionListener {
 			public void mouseExited(MouseEvent e) {
 				btnOrder.setBackground(Color.white);
 				btnOrder.setForeground(Color.BLACK);
-				btnOrder.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				
+
 				btnOrder.setBackground(MainFrame.sub_green);
 				btnOrder.setForeground(Color.white);
-				btnOrder.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			}
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				F.add("OrderView",new OrderView(F));
+				F.add("OrderView", new OrderView(F));
 				F.getCardLayout().show(F.getContentPane(), "OrderView");
 
 			}
@@ -134,20 +140,20 @@ public class HomeView extends JPanel implements ActionListener {
 			public void mouseExited(MouseEvent e) {
 				btnRecent.setBackground(Color.white);
 				btnRecent.setForeground(Color.BLACK);
-				btnRecent.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				btnRecent.setBackground(MainFrame.sub_green);
 				btnRecent.setForeground(Color.white);
-				btnRecent.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			}
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-
+				F.add("OrderListView", new OrderListView(F));
+				F.getCardLayout().show(F.getContentPane(), "OrderListView");
 			}
 		});
 		btnMyMenu.addMouseListener(new MouseListener() {
@@ -168,14 +174,14 @@ public class HomeView extends JPanel implements ActionListener {
 			public void mouseExited(MouseEvent e) {
 				btnMyMenu.setBackground(Color.white);
 				btnMyMenu.setForeground(Color.BLACK);
-				btnMyMenu.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				btnMyMenu.setBackground(MainFrame.sub_green);
 				btnMyMenu.setForeground(Color.white);
-				btnMyMenu.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			}
 
 			@Override
@@ -184,7 +190,36 @@ public class HomeView extends JPanel implements ActionListener {
 
 			}
 		});
+		btnHome.addMouseListener(new MouseListener() {
 
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				repaint();
+			}
+		});
+
+		add(btnHome);
 		add(imgPanel);
 		add(btnOrder);
 		add(btnRecent);
@@ -196,7 +231,6 @@ public class HomeView extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 

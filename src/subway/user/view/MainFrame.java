@@ -25,6 +25,9 @@ public class MainFrame extends JFrame {
 	public static Color sub_grey;
 	private CardLayout cards = new CardLayout();
 	private static String UserId;
+	private static int orderId;
+	private static String callBy;
+	
 	
 	public MainFrame() {
 		super("subway");
@@ -82,4 +85,17 @@ public class MainFrame extends JFrame {
 	public static void setUserId(String userId) {
 		UserId = userId;
 	}
+	public static int getOrderId() {
+		return orderId;
+	}
+	public static void setOrderId(int orderId) {
+		MainFrame.orderId = orderId;
+	}
+	public static String getCallBy() {
+		return callBy;
+	}
+	public static void setCallBy(String callBy) {
+		MainFrame.callBy = callBy;
+	}
+	
 }
