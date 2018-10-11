@@ -1,5 +1,6 @@
 package subway.user.model.dao;
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -99,6 +100,58 @@ public class OrderDAOImpl implements OrderDAO {
         }
     }
 
+    @Override
+    public int myMenuUpdate(OrderDTO orderDTO) throws SQLException {
+        Connection con = null;
+        PreparedStatement ps = null;
+        String sql = "UPDATE ORDERS SET ORDER_BREAD_LEN=?,ORDER_Menu=?, Order_Extra=?, Order_Bread=?, Order_Sauce=?, \r\n" + 
+        		"Order_Price=?, Order_Calorie=?,\r\n" + 
+        		"Order_User=?, Order_Text=?, Order_Is_My_Menu=?, Order_Quantity=?, ORDER_BASKET=? WHERE ORDER_ID = ?  ";
+        int result;
+        try {
+        	con = DBUtil.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, orderDTO.getOrderBreadLength());
+            ps.setString(2, orderDTO.getOrderMenu());
+            ps.setString(3, orderDTO.getOrderExtra());
+            ps.setString(4, orderDTO.getOrderBread());
+            ps.setString(5, orderDTO.getOrderSauce());
+            ps.setInt(6, orderDTO.getOrderPrice());
+            ps.setInt(7, orderDTO.getOrderCalorie());
+            ps.setString(8, orderDTO.getOrderUser());
+            ps.setString(9, orderDTO.getOrderText());
+            ps.setString(10, orderDTO.getOrderIsMyMenu());
+            ps.setInt(11, orderDTO.getOrderQuantity());
+            ps.setString(12, orderDTO.getOrderBasket());
+            ps.setInt(13, orderDTO.getOrderId());
+            result = ps.executeUpdate();
+
+            return result;
+        } finally {
+            DBUtil.dbClose(ps, con);
+        }
+    }
+    
+    
+    public int myMenuDelete(String orderID) throws SQLException{
+    	 Connection con = null;
+         PreparedStatement ps = null;
+         String sql = "DELETE FROM ORDERS  where ORDER_ID=?";
+         int result;
+         try {
+             con = DBUtil.getConnection();
+             ps = con.prepareStatement(sql);
+             ps.setString(1, orderID);
+ 			for(int i=0 ; i<orderID.length();i++) {
+ 				ps.setString(i, orderID);
+ 			}
+ 			result=ps.executeUpdate();
+ 		}finally {
+ 			DBUtil.dbClose(ps, con);
+ 		}
+ 		return result;
+    }
+    
     @Override
     public List<IngredientDTO> menuList() throws SQLException {
         Connection con = null;

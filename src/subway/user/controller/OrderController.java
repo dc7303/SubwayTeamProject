@@ -50,12 +50,36 @@ public class OrderController {
         }
         return list;
     }
+    
+    public static int myMenuUpdate(OrderDTO orderDTO) {
+    	int result=0;
+    	try {
+            result = orderService.myMenuUpdate(orderDTO);
+            SuccessView.successMessage("MY 메뉴 수정 성공!");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            FailView.errorMessage(e.getMessage());
+        }
+        return result;
+    }
+    
+    public static int myMenuDelete(String orderID) {
+    	int result=0;
+    	try {
+            result = orderService.myMenuDelete(orderID);
+            SuccessView.successMessage("MY 메뉴 삭제 성공!");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            FailView.errorMessage(e.getMessage());
+        }
+        return result; 
+    }
 
     public static List<IngredientDTO> menuList() {
-        List<IngredientDTO> list = null;
+        List<IngredientDTO> list = new ArrayList<>();
         try {
             list = orderService.menuList();
-            SuccessView.menuListView(list);
+           SuccessView.menuListView(list);
         } catch (SQLException e) {
             e.printStackTrace();
             FailView.errorMessage(e.getMessage());
@@ -63,6 +87,7 @@ public class OrderController {
         return list;
     }
     
+
     public static OrderDTO selectOrderById(int id) {
         OrderDTO orderDTO = null;
         try {
