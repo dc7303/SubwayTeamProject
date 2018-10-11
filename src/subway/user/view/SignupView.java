@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+
 import subway.user.controller.UserInfoController;
 import subway.user.model.dto.UserInfoDTO;
 
@@ -135,21 +136,29 @@ public class SignupView extends JPanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==btnSubmit) {
-			if(fieldId.getText().trim().equals("")||fieldPass.getText().trim().equals("")||	fieldCheck.getText().trim().equals("")||fieldName.getText().trim().equals("")||
+			/*if(fieldId.getText().trim().equals("")||fieldPass.getText().trim().equals("")||	fieldCheck.getText().trim().equals("")||fieldName.getText().trim().equals("")||
 					fieldPhone.getText().trim().equals("")) {
 				FailView.errorMessage("입력필수 사항입니다.");
-			}
-			else if(fieldPass.getText().equals(fieldCheck.getText().trim())&&(idFlag==true)) {
+			}*/
+			if(isValidate()==true) { 
+				
+			/*else*/ if(fieldPass.getText().equals(fieldCheck.getText().trim())&&(idFlag==true)) {
 				user = new UserInfoDTO(fieldId.getText().trim(),fieldPass.getText().trim(),
 						fieldName.getText().trim(),fieldPhone.getText().trim(),
 						fieldEmail.getText().trim());
-				if(UserInfoController.userSignUp(user)!=0) {
+				/**
+				 * userInfoDTO를 담은 user를 control단에 userSignUp에 para로 전달.
+				 * return값을 int re로 받음.
+				 * */
+				int re = UserInfoController.userSignUp(user);
+				if(re>0) {
 					SuccessView.successMessage("회원가입에 성공하였습니다.");
 					F.getCardLayout().show(F.getContentPane(), "Sign-in");
 				}
 			}
 			else {
 				FailView.errorMessage("입력정보를 다시 확인해주세요");
+			  }
 			}
 		}
 		else if(e.getSource() == btnDup) {
@@ -157,8 +166,11 @@ public class SignupView extends JPanel implements ActionListener{
 			//중복체크 
 			//user가 null이면 중복검사통과
 			user=UserInfoController.userIdCheck(id);
-			if(id.equals("")||id.length() >20||user!=null) {
+			if(id.equals("")||id.length() >20) {
 				FailView.errorMessage("불가능한 id입니다.");
+			}
+			else if (user!=null) {
+				FailView.errorMessage("이미 사용중인 id입니다.");
 			}
 			else {
 				SuccessView.successMessage("사용가능한 id입니다");
@@ -170,4 +182,43 @@ public class SignupView extends JPanel implements ActionListener{
 		}
 		 
 	}
-}
+	/**
+	 * 필수입력사항, id 이름 비밀번호 비밀번호 확인 전화번호를 입력하지 않았을 때 오류메시지 발생.
+	 * */
+	public boolean isValidate() {
+		//id 체크
+		if(fieldId.getText().equals("")) {
+			FailView.errorMessage("ID를 입력해 주세요");
+			fieldId.requestFocus();
+			return false;
+		}
+		//이름 체크
+
+		if(fieldPass.getText().equals("")) {
+			FailView.errorMessage("비밀번호를 입력하세요");
+			fieldPass.requestFocus();
+			return false;
+		}
+		//나이 체크(입력유무, 숫자여부도 체크)
+		if(fieldCheck.getText().equals("")) {
+			FailView.errorMessage("비밀번호를 확인해주세요");
+			fieldCheck.requestFocus();
+			return false;
+		}
+		//나이  - 숫자인지 문자인지 체크
+		if(fieldName.getText().equals("")) {
+			FailView.errorMessage("이름을 입력해주세요");
+			fieldName.requestFocus();
+			return false;
+		}
+		//주소 체크
+		if(fieldPhone.getText().equals("")) {
+			FailView.errorMessage("전화번호를 입력해 주세요");
+			fieldPhone.setText("");
+			return false;
+		}
+		
+		return true;
+	}
+	
+}//클래스 끝

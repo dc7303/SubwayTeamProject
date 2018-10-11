@@ -33,7 +33,6 @@ public class OrderController {
         try {
             list = orderService.orderSelect(userId);
             System.out.println(userId + "님이 선택한 메뉴");
-            SuccessView.listView(list);
             return list;
         } catch (Exception e) {
             e.printStackTrace();
@@ -45,7 +44,7 @@ public class OrderController {
         List<OrderDTO> list = null;
         try {
             list = orderService.myMenuSelect(userID);
-            SuccessView.listView(list);
+
         } catch (SQLException e) {
             e.printStackTrace();
             FailView.errorMessage(e.getMessage());
@@ -81,7 +80,7 @@ public class OrderController {
         List<IngredientDTO> list = new ArrayList<>();
         try {
             list = orderService.menuList();
-           SuccessView.menuListView(list);
+ 
         } catch (SQLException e) {
             e.printStackTrace();
             FailView.errorMessage(e.getMessage());
@@ -94,7 +93,7 @@ public class OrderController {
         OrderDTO orderDTO = null;
         try {
             orderDTO = orderService.selectOrderById(id);
-            SuccessView.selectOrder(orderDTO);
+ 
         }catch(SQLException e) {
             e.printStackTrace();
             FailView.errorMessage(e.getMessage());
