@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.Vector;
 
 import subway.admin.dto.IngredientDTO;
 import subway.dbUtil.DBUtil;
@@ -74,6 +75,41 @@ public class OrderDAOImpl implements OrderDAO {
         return list;
     }
 
+	@Override
+	public List<Vector<Object>> orderSelectVector(String userId, boolean isMyMenu) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		List<Vector<Object>> vList = new ArrayList<>();
+		  try {
+			  con=DBUtil.getConnection();  //selectπÆ ∫¡¡÷ººø‰
+			  ps=con.prepareStatement("SELECT * FROM ORDERS WHERE ORDER_USER = ? AND ORDER_IS_MY_MENU = ? ORDER BY ORDER_ID DESC");
+			  ps.setString(1, userId);
+			  ps.setBoolean(2, isMyMenu);
+		      rs=ps.executeQuery();
+		      while(rs.next()) {
+		    	  Vector<Object> v = new Vector<>();
+		    	  v.add(rs.getInt("ORDER_ID"));
+		    	  v.add(rs.getInt("ORDER_BREAD_LEN"));
+		    	  v.add(rs.getString("ORDER_MENU"));
+		    	  v.add(rs.getString("ORDER_EXTRA"));
+		    	  v.add(rs.getString("ORDER_BREAD"));
+		    	  v.add(rs.getString("ORDER_SAUCE"));
+		    	  v.add(rs.getInt("ORDER_PRICE"));
+		    	  v.add(rs.getInt("ORDER_CALORIE"));
+		    	  v.add(rs.getString("ORDER_USER"));
+		    	  v.add(rs.getString("ORDER_TEXT"));
+		    	  v.add(rs.getString("ORDER_IS_MY_MENU"));
+		    	  v.add(rs.getInt("ORDER_QUANTITY"));
+		    	  v.add(rs.getString("ORDER_BASKET"));
+		    	  vList.add(v);
+		      }
+		  }finally {
+			  DBUtil.dbClose(rs, ps , con);
+		  }
+		return vList;
+	}
+	
     @Override
     public List<OrderDTO> myMenuSelect(String userID) throws SQLException {
         Connection con = null;
