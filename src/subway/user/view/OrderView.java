@@ -11,7 +11,7 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
@@ -19,16 +19,11 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.ScrollPaneLayout;
 
+import subway.admin.dto.IngredientDTO;
 import subway.user.controller.OrderController;
-import subway.user.controller.UserInfoController;
 import subway.user.model.dto.OrderDTO;
-import subway.user.view.SigninView.ImgPanel;
 
 public class OrderView extends JPanel implements ActionListener {
 
@@ -55,13 +50,17 @@ public class OrderView extends JPanel implements ActionListener {
 	private JButton btnHome = new JButton();
 	private OrderDTO orderDTO;
 	private int orderId;
+	List<IngredientDTO> list = null;
 
 	public OrderView(JFrame frame) {
+	    list = OrderController.menuList();
 
 		F = (MainFrame) frame;
-		String[] comboName = { "15cm", "30cm", "스파이시 이탈리안  |  480kcal  |  5600원 ", "이탈리안 드레싱" };
-
-		comboLength = new JComboBox(comboName);
+		String[] menuArr = this.comboList("메뉴");
+		String[] breadArr = this.comboList("빵");
+		String[] extraArr = this.comboList("추가토핑");
+		String[] sauceArr = this.comboList("소스");
+		
 		setLayout(null);
 		setBackground(Color.WHITE);
 
@@ -95,10 +94,11 @@ public class OrderView extends JPanel implements ActionListener {
 		}
 
 		// 콤보에 내용추가
-		comboMenu = new JComboBox(comboName);
-		comboBread = new JComboBox(comboName);
-		comboExtra = new JComboBox(comboName);
-		comboSauce = new JComboBox(comboName);
+		comboMenu = new JComboBox(menuArr);
+		comboBread = new JComboBox(breadArr);
+		comboExtra = new JComboBox(extraArr);
+		comboSauce = new JComboBox(sauceArr);
+		comboLength = new JComboBox(sauceArr);
 
 		// 레이아웃 설정
 
@@ -287,6 +287,16 @@ public class OrderView extends JPanel implements ActionListener {
 		// 콤보박스, text만 설정
 
 	}
+	
+	private String[] comboList(String category) {
+	    List<IngredientDTO> list = OrderController.menuList(category);
+	    String[] result = new String[list.size()];
+	    for(int i = 0; i < list.size(); i++) {
+	        result[i] = list.get(i).getIngredName();
+	    }
+	    return result;
+	}
+	
 
 	// orderID가 전달되었고 마이메뉴 생성시 초기화
 	class ImgPanel extends JPanel {

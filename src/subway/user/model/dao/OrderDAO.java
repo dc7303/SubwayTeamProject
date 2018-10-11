@@ -26,5 +26,9 @@ public interface OrderDAO {
     
     public List<IngredientDTO> menuList() throws SQLException;
     
+    public List<IngredientDTO> menuList(String category) throws SQLException;
+    
     public OrderDTO selectOrderById(int id) throws SQLException;
+    
+    
 }

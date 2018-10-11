@@ -1,7 +1,6 @@
 package subway.user.controller;
 
 import java.sql.SQLException;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +14,7 @@ import subway.user.view.SuccessView;
 public class OrderController {
 
     private static OrderService orderService = new OrderServiceImpl();
-
+    
     public static int orderInsert(OrderDTO orderDTO) {
         int result = 0;
         try {
@@ -33,7 +32,6 @@ public class OrderController {
         try {
             list = orderService.orderSelect(userId);
             System.out.println(userId + "님이 선택한 메뉴");
-            SuccessView.listView(list);
             return list;
         } catch (Exception e) {
             e.printStackTrace();
@@ -45,7 +43,6 @@ public class OrderController {
         List<OrderDTO> list = null;
         try {
             list = orderService.myMenuSelect(userID);
-            SuccessView.listView(list);
         } catch (SQLException e) {
             e.printStackTrace();
             FailView.errorMessage(e.getMessage());
@@ -69,19 +66,30 @@ public class OrderController {
     	int result=0;
     	try {
             result = orderService.myMenuDelete(orderID);
-            SuccessView.successMessage("MY 메뉴 삭제 성공!");
         } catch (SQLException e) {
             e.printStackTrace();
             FailView.errorMessage(e.getMessage());
         }
         return result; 
     }
-
+    
     public static List<IngredientDTO> menuList() {
         List<IngredientDTO> list = new ArrayList<>();
         try {
             list = orderService.menuList();
-           SuccessView.menuListView(list);
+           
+        } catch (SQLException e) {
+            e.printStackTrace();
+            FailView.errorMessage(e.getMessage());
+        }
+        return list;
+    }
+    
+    public static List<IngredientDTO> menuList(String category) {
+        List<IngredientDTO> list = new ArrayList<>();
+        try {
+            list = orderService.menuList(category);
+           
         } catch (SQLException e) {
             e.printStackTrace();
             FailView.errorMessage(e.getMessage());
@@ -94,13 +102,13 @@ public class OrderController {
         OrderDTO orderDTO = null;
         try {
             orderDTO = orderService.selectOrderById(id);
-            SuccessView.selectOrder(orderDTO);
         }catch(SQLException e) {
             e.printStackTrace();
             FailView.errorMessage(e.getMessage());
         }
         return orderDTO;
     }
+    
 }
 
 

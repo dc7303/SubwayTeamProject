@@ -60,6 +60,15 @@ public class OrderServiceImpl implements OrderService {
         }
         return list;
     }
+    
+    @Override
+    public List<IngredientDTO> menuList(String category) throws SQLException {
+        List<IngredientDTO> list = orderDAO.menuList(category);
+        if (list == null) {
+            throw new SQLException("메뉴 리스트를 불러오는데 실패했습니다.");
+        }
+        return list;
+    }
 
     @Override
     public OrderDTO selectOrderById(int id) throws SQLException {
@@ -69,5 +78,7 @@ public class OrderServiceImpl implements OrderService {
         }
         return orderDTO;
     }
+
+
 
 }
