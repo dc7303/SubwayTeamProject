@@ -24,7 +24,6 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import subway.user.model.dto.OrderDTO;
-import subway.user.view.HomeView.ImgPanel;
 
 public class OrderListView extends JPanel implements ActionListener {
 	private String[] name = { "주문번호", "메뉴이름", "가격", "칼로리" };
