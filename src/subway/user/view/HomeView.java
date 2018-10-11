@@ -10,18 +10,12 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 
 import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import subway.user.controller.UserInfoController;
-import subway.user.model.dto.UserInfoDTO;
 
 public class HomeView extends JPanel implements ActionListener {
 	BufferedImage img = null;

@@ -3,12 +3,10 @@ package subway.user.view;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.net.URL;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 public class MainFrame extends JFrame {
@@ -24,9 +22,9 @@ public class MainFrame extends JFrame {
 	public static Color sub_yellow;
 	public static Color sub_grey;
 	private CardLayout cards = new CardLayout();
-	private static String UserId;
-	private static int orderId;
-	private static String callBy;
+	private static String UserId = "";
+	private static int orderId = 0;
+	private static String callBy = "";
 	
 	
 	public MainFrame() {
