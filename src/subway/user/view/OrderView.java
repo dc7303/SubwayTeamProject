@@ -81,16 +81,17 @@ public class OrderView extends JPanel implements ActionListener {
         orderId = F.getOrderId();
         // 주문 id를 들고 주문온 경우(최근주문에서, my_menu(주문)에서)
         if (orderId != 0 && F.getCallBy().equals("order")) {
-            initOrder(orderId);
+           
         }
         // 주문 id를 들고 수정온 경우
         else if (orderId != 0 && F.getCallBy().equals("update")) {
-            initOrder(orderId);
+        	labelTitle.setText("수정하기");
             btnOrder.setText("수정");
         }
         // my_menu생성
         else if (F.getCallBy().equals("create")) {
             init();
+            labelTitle.setText("생성하기");
             btnOrder.setText("생성");
         }
 
@@ -311,6 +312,7 @@ public class OrderView extends JPanel implements ActionListener {
             
         } else if (e.getSource() == btnOrder) {
             int result = 1;
+            
             if (btnOrder.getText().equals("수정")) {
                 // 마이에뉴 수정
                 // result=OrderController.orderUpdate
@@ -322,7 +324,11 @@ public class OrderView extends JPanel implements ActionListener {
 
             } else if (btnOrder.getText().equals("생성")) {
                 // 마이메뉴 생성
-
+            	 if (result != 0) {
+                     SuccessView.successMessage("생성에 성공했습니다.");
+                     F.getCardLayout().show(F.getContentPane(), "OrderListView");
+                 }
+                 FailView.errorMessage("생성을 실패했습니다.");
             } else {
                 // 순수 주문시
                 // insertOrder -> new OrderDTO()로 생성해서 넣어줘야됨
@@ -332,6 +338,7 @@ public class OrderView extends JPanel implements ActionListener {
                 } else {
                     SuccessView.successMessage("주문을 완료했습니다.");
                     init();
+                    F.setOrderId(orderDTO.getOrderId());
                     F.add("orderResultView", new OrderResultView(F));
                     F.getCardLayout().show(F.getContentPane(), "orderResultView");
                 }
@@ -341,11 +348,11 @@ public class OrderView extends JPanel implements ActionListener {
     }
 
     private void init() {
-        comboMenu.setSelectedIndex(0);
+        /*comboMenu.setSelectedIndex(0);
         comboLength.setSelectedIndex(0);
         comboBread.setSelectedIndex(0);
         comboExtra.setSelectedIndex(0);
-        comboSauce.setSelectedIndex(0);
+        comboSauce.setSelectedIndex(0);*/
         fieldText.setText("");
         labelPredict.setText("");
         labelReSauce.setText("");
@@ -355,15 +362,7 @@ public class OrderView extends JPanel implements ActionListener {
 
     }
 
-    /*
-     * initOrder();
-     */
-    // orderId가 전달된경우 주문페이지 초기화
-    private void initOrder(int orderId) {
-        // 콤보박스, text만 설정
-
-    }
-
+   
     private String[] comboList(String category) {
         List<IngredientDTO> list = OrderController.menuList(category);
         String[] result = new String[list.size()];

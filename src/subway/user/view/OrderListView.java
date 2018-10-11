@@ -71,7 +71,8 @@ public class OrderListView extends JPanel implements ActionListener {
 
         }
         addRowTable(list);
-
+        jt.setRowSelectionInterval(0, 0);
+        
         // mymenu관련 설정
         String[] crud = { "생성", "삭제", "수정", "주문" };
         comboCrud = new JComboBox(crud);
@@ -178,9 +179,8 @@ public class OrderListView extends JPanel implements ActionListener {
 
         // 마이메뉴에서 왔을시 세팅
         if (F.getCallBy().equals("mymenu")) {
-            list = OrderController.orderSelectVector(F.getUserId(), true);
-            addRowTable(list);
-            initMyMenu();
+        	initMyMenu();
+            
         }
 
         // 현재패널에 추가
@@ -206,7 +206,9 @@ public class OrderListView extends JPanel implements ActionListener {
                 // 주문하기(mymenu)
                 F.setCallBy("create");
                 // orderView에서 init필요
-
+               // F.add("OrderView", new OrderView(F));
+                
+                 F.add("OrderView", new OrderView(F));
                 F.getCardLayout().show(F.getContentPane(), "OrderView");
             } else if (selected.equals("삭제")) {
                 // 삭제후 addrow()로 초기화 및 재
@@ -240,10 +242,11 @@ public class OrderListView extends JPanel implements ActionListener {
 
             }
         } else if (e.getSource() == btnOrder) {
+        	
             F.setCallBy("order");
             F.setOrderId(orderId);
-            F.add("OrderView", new OrderView(F));
-            F.getCardLayout().show(F.getContentPane(), "OrderView");
+            F.add("OrderResultView", new OrderResultView(F));
+            F.getCardLayout().show(F.getContentPane(), "OrderResultView");
         }
     }
 
