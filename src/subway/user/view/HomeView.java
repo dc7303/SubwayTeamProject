@@ -146,6 +146,7 @@ public class HomeView extends JPanel implements ActionListener {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				F.setCallBy("recent");
 				F.add("OrderListView", new OrderListView(F));
 				F.getCardLayout().show(F.getContentPane(), "OrderListView");
 			}
@@ -180,8 +181,9 @@ public class HomeView extends JPanel implements ActionListener {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-
+				F.setCallBy("mymenu");
+				F.add("OrderListView", new OrderListView(F));
+				F.getCardLayout().show(F.getContentPane(), "OrderListView");
 			}
 		});
 		btnHome.addMouseListener(new MouseListener() {

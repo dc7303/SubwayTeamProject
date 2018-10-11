@@ -24,6 +24,7 @@ public class UserInfoController {
             FailView.errorMessage(e.getMessage());
         }
         return result;
+        
     }
 
     /**
@@ -57,7 +58,9 @@ public class UserInfoController {
         } catch (Exception e) {
             FailView.errorMessage(e.getMessage());
         }
+        
         return userDTO;
+         
     }
 
     /**
