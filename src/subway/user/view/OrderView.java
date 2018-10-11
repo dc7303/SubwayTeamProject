@@ -228,88 +228,70 @@ public class OrderView extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        List<IngredientDTO> menuList = OrderController.menuList("메뉴");
+        List<IngredientDTO> breadList = OrderController.menuList("빵");
+        List<IngredientDTO> extraList = OrderController.menuList("추가토핑");
+        List<IngredientDTO> sauceList = OrderController.menuList("소스");
+
+        String[] menuBoolean = comboList(menuList);
+        String[] breadBoolean = comboList(breadList);
+        String[] extraBoolean = comboList(extraList);
+        String[] sauceBoolean = comboList(sauceList);
+
+        String menu = comboMenu.getSelectedItem().toString();
+        String bread = comboBread.getSelectedItem().toString();
+        String extra = comboExtra.getSelectedItem().toString();
+        String sauce = comboSauce.getSelectedItem().toString();
+        String length = comboLength.getSelectedItem().toString();
+
+        int menuCal = 0;
+        int menuPri = 0;
+        int breadCal = 0;
+        int extraCal = 0;
+        int extraPri = 0;
+        int sauceCal = 0;
+
         if (e.getSource() == comboMenu) {
             String combo = comboMenu.getSelectedItem().toString();
             List<IngredientDTO> list = OrderController.menuList("메뉴");
             String[] comboBoolean = comboList(list);
-            for(int i = 0; i < comboBoolean.length; i++) {
+            for (int i = 0; i < comboBoolean.length; i++) {
                 if (combo.equals(comboBoolean[i])) {
                     labelReSauceTitle.setVisible(true);
                     labelReSauce.setText(list.get(i).getIngredRecommendSauce() + "!!");
                 }
             }
         } else if (e.getSource() == btnPredict) {
-            List<IngredientDTO> menuList = OrderController.menuList("메뉴");
-            List<IngredientDTO> breadList = OrderController.menuList("빵");
-            List<IngredientDTO> extraList = OrderController.menuList("추가토핑");
-            List<IngredientDTO> sauceList = OrderController.menuList("소스");
-            
-            String[] menuBoolean = comboList(menuList);
-            String[] breadBoolean = comboList(breadList);
-            String[] extraBoolean = comboList(extraList);
-            String[] sauceBoolean = comboList(sauceList);
-            
-            String menu = comboMenu.getSelectedItem().toString();
-            String bread = comboBread.getSelectedItem().toString();
-            String extra = comboExtra.getSelectedItem().toString();
-            String sauce = comboSauce.getSelectedItem().toString();
-            String length = comboLength.getSelectedItem().toString();
-            
-            int menuCal = 0;
-            int menuPri = 0;
-            int breadCal = 0;
-            int extraCal = 0;
-            int extraPri = 0;
-            int sauceCal = 0;
 
-            /*
-             * 메뉴 칼로리, 가격 정보 추출
-             */
-            for(int i = 0; i < menuList.size(); i++) {
-                if(menu.equals(menuBoolean[i])) {
-                   menuCal = menuList.get(i).getIngredCalorie();
-                   if(length.equals("15")) {
-                       menuPri = menuList.get(i).getIngredPrice15();
-                   }else if(length.equals("30")) {
-                       menuPri = menuList.get(i).getIngredPrice30();
-                   }
-                }
-            }
-            /*
-             * 빵 칼로리 추출
-             */
-            for(int i = 0; i < breadList.size(); i++) {
-                if(bread.equals(breadBoolean[i])) {
-                    breadCal = breadList.get(i).getIngredCalorie();
-                }
-            }
-            /*
-             * 엑스트라 칼로리, 가격정보 추출
-             */
-            for(int i = 0; i < extraList.size(); i++) {
-                if(extra.equals(extraBoolean[i])) {
-                   extraCal = extraList.get(i).getIngredCalorie();
-                   if(length.equals("15")) {
-                       extraPri = extraList.get(i).getIngredPrice15();
-                   }else if(length.equals("30")) {
-                       extraPri = extraList.get(i).getIngredPrice30();
-                   }
-                }
-            }
-            /*
-             * 소스 칼로리 추출
-             */
-            for(int i = 0; i < sauceList.size(); i++) {
-                if(sauce.equals(sauceBoolean[i])) {
-                    sauceCal = sauceList.get(i).getIngredCalorie();
-                }
-            }
+            //메뉴 가격과 칼로리
+            menuCal = comboCalorie(menu, menuList, menuBoolean, length);
+            menuPri = comboPrice(menu, menuList, menuBoolean, length);
+          
+            // 빵 칼로리
+            breadCal = comboCalorie(bread, breadList, breadBoolean, length);
+
+            //엑스트라 가격과 칼로리
+            extraCal = comboCalorie(extra, extraList, extraBoolean, length);
+            extraPri = comboPrice(extra, extraList, extraBoolean, length);
+            
+            // 소스 칼로리
+            sauceCal = comboCalorie(sauce, sauceList, sauceBoolean, length);
+            
             labelPredict.setText((menuCal + breadCal + extraCal + sauceCal) + "칼로리 " + (menuPri + extraPri) + "원");
             btnOrder.setEnabled(true);
-            
-            
-            
+
         } else if (e.getSource() == btnOrder) {
+            String menuName = orderInsert(menu, menuList, menuBoolean);
+            String breadName = orderInsert(bread, breadList, breadBoolean);
+            String extraName = orderInsert(extra, extraList, extraBoolean);
+            String sauceName = orderInsert(sauce, sauceList, sauceBoolean);
+            
+            int totalCal = menuCal + breadCal + extraCal + sauceCal;
+            int totalPri = menuPri + extraPri;
+            
+            OrderDTO order = new OrderDTO(0, Integer.parseInt(length), menuName, extraName,
+                            breadName, sauceName, totalPri, totalCal, F.getUserId(), fieldText.getText(), "FALSE", 1, 1);
+
             int result = 1;
             if (btnOrder.getText().equals("수정")) {
                 // 마이에뉴 수정
@@ -326,8 +308,7 @@ public class OrderView extends JPanel implements ActionListener {
             } else {
                 // 순수 주문시
                 // insertOrder -> new OrderDTO()로 생성해서 넣어줘야됨
-                orderDTO = null;
-                if (OrderController.orderInsert(orderDTO) == 0) {
+                if (OrderController.orderInsert(order) == 0) {
                     FailView.errorMessage("주문에 실패하였습니다.");
                 } else {
                     SuccessView.successMessage("주문을 완료했습니다.");
@@ -364,6 +345,12 @@ public class OrderView extends JPanel implements ActionListener {
 
     }
 
+    /**
+     * combo에 값을 넣기위해 카테고리별로 해당 메뉴 정보들 String[]로 리턴
+     * 
+     * @param category
+     * @return String[]
+     */
     private String[] comboList(String category) {
         List<IngredientDTO> list = OrderController.menuList(category);
         String[] result = new String[list.size()];
@@ -382,6 +369,12 @@ public class OrderView extends JPanel implements ActionListener {
         return result;
     }
 
+    /**
+     * 가격과 칼로리, 추천소스를 구현하기 위해 combo에 입력되어있는 string 값과 비교하기 위해 같은 값을 추출하는 메소드
+     * 
+     * @param list
+     * @return
+     */
     private String[] comboList(List<IngredientDTO> list) {
         String[] result = new String[list.size()];
         for (int i = 0; i < list.size(); i++) {
@@ -399,12 +392,71 @@ public class OrderView extends JPanel implements ActionListener {
         return result;
     }
 
+    /**
+     * dto 생성하기 위해 combo에서 선택한 정보의 이름을 불러오기 위한 메소드
+     * 
+     * @param combo
+     * @param list
+     * @param comboBoolean
+     * @return
+     */
+    private String orderInsert(String combo, List<IngredientDTO> list, String[] comboBoolean) {
+        String result = null;
+        for (int i = 0; i < list.size(); i++) {
+            if (combo.equals(comboBoolean[i])) {
+                result = list.get(i).getIngredName();
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * combo에서 선택한 값 칼로리 추출
+     * 
+     * @return
+     */
+    private int comboCalorie(String combo, List<IngredientDTO> list, String[] comboBoolean, String length) {
+        int result = 0;
+        for (int i = 0; i < list.size(); i++) {
+            if (combo.equals(comboBoolean[i])) {
+                if(length.equals("15")) {
+                    result = list.get(i).getIngredCalorie();
+                } else if (length.equals("30")) {
+                    result = list.get(i).getIngredCalorie()*2;
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * 15 or 30 가격 추출
+     * @param combo
+     * @param list
+     * @param comboBoolean
+     * @return
+     */
+    private int comboPrice(String combo, List<IngredientDTO> list, String[] comboBoolean, String length) {
+        int result = 0;
+        for (int i = 0; i < list.size(); i++) {
+            if (combo.equals(comboBoolean[i])) {
+                if (length.equals("15")) {
+                    result = list.get(i).getIngredPrice15();
+                } else if (length.equals("30")) {
+                    result = list.get(i).getIngredPrice30();
+                }
+            }
+        }
+        return result;
+    }
+
+
     // orderID가 전달되었고 마이메뉴 생성시 초기화
     class ImgPanel extends JPanel {
         public void paint(Graphics g) {
             g.drawImage(img, 0, 0, null);
         }
     }
-
 
 }
