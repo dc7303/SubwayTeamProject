@@ -2,6 +2,7 @@ package subway.user.model.service;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Vector;
 
 import subway.admin.dto.IngredientDTO;
 import subway.user.model.dao.OrderDAO;
@@ -26,6 +27,14 @@ public class OrderServiceImpl implements OrderService {
         return list;
     }
 
+	@Override
+	public List<Vector<Object>> orderSelectVector(String userId, boolean isMyMenu) throws SQLException {
+		List<Vector<Object>> vList = orderDAO.orderSelectVector(userId, isMyMenu);
+		if(vList==null || vList.size()==0)
+			throw new SQLException("검색된 정보가 없습니다.");
+		return vList;
+	}
+	
     @Override
     public List<OrderDTO> myMenuSelect(String userID) throws SQLException {
         List<OrderDTO> list = orderDAO.myMenuSelect(userID);
