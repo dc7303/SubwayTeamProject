@@ -61,7 +61,7 @@ public class UserInfoController {
         } catch (Exception e) {
             FailView.errorMessage(e.getMessage());
         }
-        userDTO = new UserInfoDTO("C62","123123");
+        
         return userDTO;
          
     }

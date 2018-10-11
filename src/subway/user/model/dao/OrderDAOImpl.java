@@ -81,11 +81,16 @@ public class OrderDAOImpl implements OrderDAO {
 		PreparedStatement ps=null;
 		ResultSet rs=null;
 		List<Vector<Object>> vList = new ArrayList<>();
+		String isMy;
+		if(isMyMenu) {
+			isMy = "TRUE";
+		}
+		else isMy = "FALSE";
 		  try {
 			  con=DBUtil.getConnection();  //selectπÆ ∫¡¡÷ººø‰
 			  ps=con.prepareStatement("SELECT * FROM ORDERS WHERE ORDER_USER = ? AND ORDER_IS_MY_MENU = ? ORDER BY ORDER_ID DESC");
 			  ps.setString(1, userId);
-			  ps.setBoolean(2, isMyMenu);
+			  ps.setString(2, isMy);
 		      rs=ps.executeQuery();
 		      while(rs.next()) {
 		    	  Vector<Object> v = new Vector<>();
@@ -178,9 +183,9 @@ public class OrderDAOImpl implements OrderDAO {
              con = DBUtil.getConnection();
              ps = con.prepareStatement(sql);
              ps.setString(1, orderID);
- 			for(int i=0 ; i<orderID.length();i++) {
+ 			/*for(int i=0 ; i<orderID.length();i++) {
  				ps.setString(i, orderID);
- 			}
+ 			}*/
  			result=ps.executeUpdate();
  		}finally {
  			DBUtil.dbClose(ps, con);

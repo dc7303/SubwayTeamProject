@@ -20,6 +20,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -30,7 +31,7 @@ import subway.user.model.dto.OrderDTO;
 import subway.user.view.HomeView.ImgPanel;
 
 public class OrderListView extends JPanel implements ActionListener {
-	private String[] name = { "주문번호", "메뉴이름", "가격", "칼로리" };
+	private String[] name = { "주문번호", "길이","메뉴이름", "추가토핑", "빵","소스" };
 	BufferedImage img = null;
 	private DefaultTableModel dt = new DefaultTableModel(name, 0) {
 		public boolean isCellEditable(int row, int column) {
@@ -71,29 +72,15 @@ public class OrderListView extends JPanel implements ActionListener {
 		 * if (list != null && list.size() > 0) { this.addRowTable(list);
 		 * jt.setRowSelectionInterval(0, 0); }
 		 */
-
-		OrderDTO orderDTO = new OrderDTO(1, 30, "로티세리 치킨", "에그마요", "허니오트", "리치시저", 9000, 1035, "C62", "배달가능?", "TRUE",
-				2, "2");
-		OrderDTO orderDTO2 = new OrderDTO(2, 30, "에그마요", "에그마요", "허니오트", "리치시저", 9000, 1035, "C62", "배달가능?", "TRUE", 2,
-				"2");
-		Vector<Object> vec = new Vector<>();
-		vec.add(orderDTO.getOrderId());
-		vec.add(orderDTO.getOrderMenu());
-		vec.add(orderDTO.getOrderPrice());
-		vec.add(orderDTO.getOrderCalorie());
-		list.add(vec);
-
-		Vector<Object> vec2 = new Vector<>();
-		vec2.add(orderDTO2.getOrderId());
-		vec2.add(orderDTO2.getOrderMenu());
-		vec2.add(orderDTO2.getOrderPrice());
-		vec2.add(orderDTO2.getOrderCalorie());
-		// System.out.println(vec.get(5));
-		list.add(vec2);
-
-		for (Vector<Object> v : list) {
-			dt.addRow(v);
+		if(F.getCallBy().equals("mymenu")) {
+			list = OrderController.orderSelectVector(F.getUserId(), true);
+			
 		}
+		else {
+			list = OrderController.orderSelectVector(F.getUserId(), false);
+			
+		}
+		addRowTable(list);
 
 		// mymenu관련 설정
 		String[] crud = { "생성", "삭제", "수정", "주문" };
@@ -101,7 +88,7 @@ public class OrderListView extends JPanel implements ActionListener {
 
 		// 위치설정
 		// 테이블 설정
-		jt.setRowSelectionInterval(0, 0);
+		//jt.setRowSelectionInterval(0, 0);
 		jt.getTableHeader().setReorderingAllowed(false);
 		jt.getTableHeader().setResizingAllowed(false);
 
@@ -216,10 +203,55 @@ public class OrderListView extends JPanel implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		int result=0;
+		int rows [] = jt.getSelectedRows();
+		String ids [] = new String[rows.length];
+		for(int i=0; i<rows.length ; i++) {
+			ids[i] = jt.getValueAt(rows[i], 0).toString();
+		}
+		int orderId = Integer.parseInt(ids[0]);
 		if (e.getSource() == btnOrder && F.getCallBy().equals("mymenu")) {
-			
+			String selected = comboCrud.getSelectedItem().toString();
+			if(selected.equals("생성")) {
+				//주문하기(mymenu)
+				F.setCallBy("create");
+				//orderView에서 init필요
+				
+				F.getCardLayout().show(F.getContentPane(), "OrderView");
+			}else if(selected.equals("삭제")){
+				//삭제후 addrow()로 초기화 및 재
+				int re = JOptionPane.showConfirmDialog(this, "정말 삭제할래???");
+				if(re==0) {
+					//삭제하는경우
+					
+					result = OrderController.myMenuDelete(ids[0]);
+					if(result!=0) {
+						//성공
+						SuccessView.successMessage("삭제완료");
+						list = OrderController.orderSelectVector(F.getUserId(), true);
+						addRowTable(list);
+					}else {
+						FailView.errorMessage("삭제실패");
+					}
+					
+				}
+			}else if(selected.equals("수정")){
+				F.setCallBy("update");
+				F.setOrderId(orderId);
+				//orderView에서 init필요
+				F.getCardLayout().show(F.getContentPane(), "OrderView");
+				
+			}else //주문
+				{
+				F.setCallBy("order");
+				F.setOrderId(orderId);
+				//orderView에서 init필요
+				F.getCardLayout().show(F.getContentPane(), "OrderView");
+				
+			}
 		} else if (e.getSource() == btnOrder) {
 			F.setCallBy("order");
+			F.setOrderId(orderId);
 			F.add("OrderView", new OrderView(F));
 			F.getCardLayout().show(F.getContentPane(), "OrderView");
 		}

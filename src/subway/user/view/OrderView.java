@@ -57,7 +57,7 @@ public class OrderView extends JPanel implements ActionListener {
 	private int orderId;
 
 	public OrderView(JFrame frame) {
-
+		System.out.println(F.getCallBy());
 		F = (MainFrame) frame;
 		String[] comboName = { "15cm", "30cm", "스파이시 이탈리안  |  480kcal  |  5600원 ", "이탈리안 드레싱" };
 
