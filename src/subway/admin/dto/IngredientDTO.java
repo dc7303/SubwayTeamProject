@@ -11,6 +11,7 @@ public class IngredientDTO {
     public IngredientDTO() {
     }
     
+    
     public IngredientDTO(String ingredName, String ingredCategory, int ingredCalorie, int ingredPrice15,
             int ingredPrice30, String ingredRecommendSauce) {
         super();

@@ -15,15 +15,12 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-import subway.user.controller.OrderController;
 import subway.user.model.dto.OrderDTO;
-import subway.user.view.OrderView.ImgPanel;
 
 public class OrderResultView extends JPanel implements ActionListener {
 	private MainFrame F = null;

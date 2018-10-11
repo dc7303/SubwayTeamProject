@@ -60,6 +60,7 @@ public class OrderView extends JPanel implements ActionListener {
 		String[] breadArr = this.comboList("빵");
 		String[] extraArr = this.comboList("추가토핑");
 		String[] sauceArr = this.comboList("소스");
+		String[] langthArr = {"15", "30"};
 		
 		setLayout(null);
 		setBackground(Color.WHITE);
@@ -98,7 +99,7 @@ public class OrderView extends JPanel implements ActionListener {
 		comboBread = new JComboBox(breadArr);
 		comboExtra = new JComboBox(extraArr);
 		comboSauce = new JComboBox(sauceArr);
-		comboLength = new JComboBox(sauceArr);
+		comboLength = new JComboBox(langthArr);
 
 		// 레이아웃 설정
 
@@ -227,7 +228,8 @@ public class OrderView extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == comboMenu) {
+		
+	    if (e.getSource() == comboMenu) {
 			labelReSauceTitle.setVisible(true);
 			labelReSauce.setText("이탈리안 드레싱!");
 		} else if (e.getSource() == btnPredict) {
@@ -292,7 +294,12 @@ public class OrderView extends JPanel implements ActionListener {
 	    List<IngredientDTO> list = OrderController.menuList(category);
 	    String[] result = new String[list.size()];
 	    for(int i = 0; i < list.size(); i++) {
-	        result[i] = list.get(i).getIngredName();
+	        if(category.equals("메뉴")) {
+	            result[i] = list.get(i).getIngredName() + " || " + list.get(i).getIngredCalorie() + " || " + list.get(i).getIngredPrice15()
+	                    + " || " + list.get(i).getIngredPrice30() + " || " + list.get(i).getIngredRecommendSauce();
+	        }else {
+	            result[i] = list.get(i).getIngredName() + " || " + list.get(i).getIngredCalorie();
+	        }
 	    }
 	    return result;
 	}

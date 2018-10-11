@@ -180,7 +180,7 @@ public class OrderDAOImpl implements OrderDAO {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String sql = "select * from ingredients where = ?";
+        String sql = "select * from ingredients where ingred_category = ?";
         List<IngredientDTO> list = new ArrayList<IngredientDTO>();
         try {
             con = DBUtil.getConnection();
