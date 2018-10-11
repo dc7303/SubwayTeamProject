@@ -3,6 +3,7 @@ package subway.user.controller;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import org.omg.PortableInterceptor.SUCCESSFUL;
 
@@ -38,6 +39,18 @@ public class OrderController {
 			e.printStackTrace();
 		}
 		return list;
+	}
+	
+	public static List<Vector<Object>> orderSelectVector(String userId, boolean isMyMenu){
+		List<Vector<Object>> vList = new ArrayList<>();
+		try {
+			vList = orderService.orderSelectVector(userId, isMyMenu);
+			SuccessView.vListView(vList);
+		}catch(Exception e){
+			e.printStackTrace();
+			FailView.errorMessage(e.getMessage());
+		}
+		return vList;
 	}
 	
 	public static List<OrderDTO> myMenuSelect(String userID) {
