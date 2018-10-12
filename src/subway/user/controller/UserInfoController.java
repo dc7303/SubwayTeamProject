@@ -37,6 +37,7 @@ public class UserInfoController {
         UserInfoDTO userDTO = null;
         try {
             userDTO = service.userIdCheck(userId);
+            SuccessView.successMessage("사용가능한 ID입니다.");
         } catch (Exception e) {
             e.printStackTrace();
             FailView.errorMessage(e.getMessage());
