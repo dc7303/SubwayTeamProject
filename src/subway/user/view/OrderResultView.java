@@ -77,6 +77,7 @@ public class OrderResultView extends JPanel implements ActionListener {
 		 * orderExtra, String orderBread, String orderSauce, int orderPrice, int
 		 * orderCalorie, String orderUser, String orderText, String orderIsMyMenu, int
 		 * orderQuantity, String orderBasket)
+		 * 
 		 */
 		
 		

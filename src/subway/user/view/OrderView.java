@@ -306,11 +306,15 @@ public class OrderView extends JPanel implements ActionListener {
 
             } else if (btnOrder.getText().equals("생성")) {
                 // 마이메뉴 생성
+            	order.setOrderIsMyMenu("TRUE");
+            	result = OrderController.orderInsert(order);
             	 if (result != 0) {
                      SuccessView.successMessage("생성에 성공했습니다.");
+                     F.setCallBy("mymenu");
+                     F.add("OrderListView", new OrderListView(F));
                      F.getCardLayout().show(F.getContentPane(), "OrderListView");
                  }
-                 FailView.errorMessage("생성을 실패했습니다.");
+            	 else FailView.errorMessage("생성을 실패했습니다.");
             } else {
                 // 순수 주문시
                 // insertOrder -> new OrderDTO()로 생성해서 넣어줘야됨
@@ -319,7 +323,8 @@ public class OrderView extends JPanel implements ActionListener {
                 } else {
                     SuccessView.successMessage("주문을 완료했습니다.");
                     init();
-                    F.setOrderId(orderDTO.getOrderId());
+                    
+                    F.setOrderId(order.getOrderId());
                     F.add("orderResultView", new OrderResultView(F));
                     F.getCardLayout().show(F.getContentPane(), "orderResultView");
                 }
