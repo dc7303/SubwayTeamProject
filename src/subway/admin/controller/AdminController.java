@@ -9,8 +9,8 @@ import subway.admin.dto.IngredientDTO;
 import subway.admin.service.AdminService;
 import subway.admin.service.AdminServiceImpl;
 import subway.user.model.dto.UserInfoDTO;
-import subway.user.view.FailView;
-import subway.user.view.SuccessView;
+import subway.admin.view.FailView;
+import subway.admin.view.SuccessView;
 
 public class AdminController {
     private static AdminService service = new AdminServiceImpl();
@@ -24,12 +24,14 @@ public class AdminController {
         List<UserInfoDTO> list = new ArrayList();
         try {
             list = service.userSearch();
+            SuccessView.userList(list);
         } catch (SQLException e) {
             e.printStackTrace();
             FailView.errorMessage(e.getMessage());
         }
         return list;
     }
+
 
     /**
      * 메뉴추가 기능
