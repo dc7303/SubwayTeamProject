@@ -23,7 +23,7 @@ public class DBUtil {
 			//2개의 properties file 로딩하기
 			//properies를 사용하는 이유는 계속해서 key값을 사용해야하기 때문에 ResourceBundle보다는 porperties가 적합하다.
 			proFile.load(new FileInputStream("properties/dbInfo.properties"));
-			
+			proFile.load(new FileInputStream("properties/subway.properties"));
 			Class.forName(proFile.getProperty("driverName"));
 		} catch (Exception e) {
 			FailView.errorMessage(e.getMessage());

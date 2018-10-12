@@ -15,20 +15,19 @@ import subway.dbUtil.DBUtil;
 import subway.user.model.dto.OrderDTO;
 
 public class OrderDAOImpl implements OrderDAO {
-    private Properties proFile = new DBUtil().getProFile();
+    private Properties proFile = DBUtil.getProFile();
 
     @Override
     public int orderInsert(OrderDTO orderDTO) throws SQLException {
         Connection con = null;
         PreparedStatement ps = null;
-        String sql = "INSERT INTO ORDERS VALUES(ORDER_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         int result;
         // INSERT INTO ORDERS VALUES(ORDER_SEQ.NEXTVAL, 15, '«ÆµÂ∆˜≈©', 'ø¿π…∑ø', '«œ∆º',
         // '∑£ƒ°µÂ∑πΩÃ', 5100,750,'C62',
         // 'ªÁ¿Â¥‘ ∏Ù∑° ∞Ì±‚¬Õ∏∏ ¥ı ≥÷æÓ¡÷ººø‰(º“±Ÿ)', 'FALSE', 1, 2);
         try {
             con = DBUtil.getConnection();
-            ps = con.prepareStatement(sql);
+            ps = con.prepareStatement(proFile.getProperty("order.orderInsert"));
             ps.setInt(1, orderDTO.getOrderBreadLength());
             ps.setString(2, orderDTO.getOrderMenu());
             ps.setString(3, orderDTO.getOrderExtra());
@@ -55,10 +54,9 @@ public class OrderDAOImpl implements OrderDAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
         List<OrderDTO> list = new ArrayList<>();
-        String sql = "SELECT * FROM ORDERS WHERE lower(ORDER_USER) like lower(?) ";
-        try {
+         try {
             con = DBUtil.getConnection();
-            ps = con.prepareStatement(sql);
+            ps = con.prepareStatement(proFile.getProperty("order.orderSelect"));
             ps.setString(1, "%" + userId + "%");
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -88,7 +86,7 @@ public class OrderDAOImpl implements OrderDAO {
 		else isMy = "FALSE";
 		  try {
 			  con=DBUtil.getConnection();  //selectπÆ ∫¡¡÷ººø‰
-			  ps=con.prepareStatement("SELECT * FROM ORDERS WHERE ORDER_USER = ? AND ORDER_IS_MY_MENU = ? ORDER BY ORDER_ID DESC");
+			  ps=con.prepareStatement(proFile.getProperty("order.orderSelectVector"));
 			  ps.setString(1, userId);
 			  ps.setString(2, isMy);
 		      rs=ps.executeQuery();
@@ -120,11 +118,10 @@ public class OrderDAOImpl implements OrderDAO {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String sql = "select * from orders where order_is_my_menu = 'TRUE' and order_user = ?";
         List<OrderDTO> list = new ArrayList<OrderDTO>();
         try {
             con = DBUtil.getConnection();
-            ps = con.prepareStatement(sql);
+            ps = con.prepareStatement(proFile.getProperty("order.myMenuSelect"));
             ps.setString(1, userID);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -145,13 +142,10 @@ public class OrderDAOImpl implements OrderDAO {
     public int myMenuUpdate(OrderDTO orderDTO) throws SQLException {
         Connection con = null;
         PreparedStatement ps = null;
-        String sql = "UPDATE ORDERS SET ORDER_BREAD_LEN=?,ORDER_Menu=?, Order_Extra=?, Order_Bread=?, Order_Sauce=?, \r\n" + 
-        		"Order_Price=?, Order_Calorie=?,\r\n" + 
-        		"Order_User=?, Order_Text=?, Order_Is_My_Menu=?, Order_Quantity=?, ORDER_BASKET=? WHERE ORDER_ID = ?  ";
         int result;
         try {
         	con = DBUtil.getConnection();
-            ps = con.prepareStatement(sql);
+            ps = con.prepareStatement(proFile.getProperty("order.myMenuUpdate"));
             ps.setInt(1, orderDTO.getOrderBreadLength());
             ps.setString(2, orderDTO.getOrderMenu());
             ps.setString(3, orderDTO.getOrderExtra());
@@ -177,11 +171,10 @@ public class OrderDAOImpl implements OrderDAO {
     public int myMenuDelete(String orderID) throws SQLException{
     	 Connection con = null;
          PreparedStatement ps = null;
-         String sql = "DELETE FROM ORDERS  where ORDER_ID=?";
          int result;
          try {
              con = DBUtil.getConnection();
-             ps = con.prepareStatement(sql);
+             ps = con.prepareStatement(proFile.getProperty("order.myMenuDelete"));
              ps.setString(1, orderID);
  			/*for(int i=0 ; i<orderID.length();i++) {
  				ps.setString(i, orderID);
@@ -198,11 +191,10 @@ public class OrderDAOImpl implements OrderDAO {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String sql = "select * from ingredients";
         List<IngredientDTO> list = new ArrayList<IngredientDTO>();
         try {
             con = DBUtil.getConnection();
-            ps = con.prepareStatement(sql);
+            ps = con.prepareStatement(proFile.getProperty("order.menuList"));
             rs = ps.executeQuery();
             while (rs.next()) {
                 list.add(new IngredientDTO(rs.getString("ingred_name"), rs.getString("ingred_category"),
@@ -221,11 +213,10 @@ public class OrderDAOImpl implements OrderDAO {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String sql = "select * from ingredients where ingred_category = ?";
         List<IngredientDTO> list = new ArrayList<IngredientDTO>();
         try {
             con = DBUtil.getConnection();
-            ps = con.prepareStatement(sql);
+            ps = con.prepareStatement(proFile.getProperty("order.menuListcategory"));
             ps.setString(1, category);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -246,10 +237,9 @@ public class OrderDAOImpl implements OrderDAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
         OrderDTO orderDTO = new OrderDTO();
-        String sql = "SELECT * FROM ORDERS WHERE order_id = ?";
         try {
             con = DBUtil.getConnection();
-            ps = con.prepareStatement(sql);
+            ps = con.prepareStatement(proFile.getProperty("order.selectOrderById"));
             ps.setInt(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
