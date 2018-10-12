@@ -21,7 +21,7 @@ public class UserInfoController {
             result = service.userSignUp(userDTO);
             
         } catch (Exception e) {
-            FailView.errorMessage(e.getMessage());
+           // FailView.errorMessage(e.getMessage());
         }
         return result;
         
@@ -37,10 +37,10 @@ public class UserInfoController {
         UserInfoDTO userDTO = null;
         try {
             userDTO = service.userIdCheck(userId);
-            SuccessView.successMessage("사용가능한 ID입니다.");
+            
         } catch (Exception e) {
-            e.printStackTrace();
-            FailView.errorMessage(e.getMessage());
+            //e.printStackTrace();
+           // FailView.errorMessage(e.getMessage());
         }
         return userDTO;
     }
@@ -55,9 +55,9 @@ public class UserInfoController {
         UserInfoDTO userDTO = null;
         try {
             userDTO = service.userSignIn(id, pw);
-            SuccessView.successMessage(id + "님 환영합니다.");
+            
         } catch (Exception e) {
-            FailView.errorMessage(e.getMessage());
+           
         }
         
         return userDTO;
@@ -75,7 +75,7 @@ public class UserInfoController {
             result = service.userUpdate(userDTO);
             SuccessView.successMessage("수정이 완료되었습니다.");
         } catch (Exception e) {
-            FailView.errorMessage(e.getMessage());
+           
         }
         return result;
     }
