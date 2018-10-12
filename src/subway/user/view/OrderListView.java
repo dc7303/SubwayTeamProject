@@ -242,7 +242,8 @@ public class OrderListView extends JPanel implements ActionListener {
 
             }
         } else if (e.getSource() == btnOrder) {
-        	
+        	OrderDTO order =OrderController.selectOrderById(orderId);
+        	OrderController.orderInsert(order);
             F.setCallBy("order");
             F.setOrderId(orderId);
             F.add("OrderResultView", new OrderResultView(F));

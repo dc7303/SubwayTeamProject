@@ -43,7 +43,6 @@ public class OrderResultView extends JPanel implements ActionListener {
 	BufferedImage img = null;
 	private JButton btnHome = new JButton();
 	private List<OrderDTO> list;
-	private OrderDTO orderDTO;
 
 	public OrderResultView(JFrame frame) {
 		F = (MainFrame) frame;
@@ -80,15 +79,16 @@ public class OrderResultView extends JPanel implements ActionListener {
 		 */
 		
 		
-		orderDTO = OrderController.selectOrderById(F.getOrderId());
+		//orderDTO = OrderController.selectOrderById(F.getOrderId());
+		list = OrderController.orderSelect(F.getUserId());
 		
-		comboMenu.setText(orderDTO.getOrderMenu());
-		comboLength.setText(Integer.toString(orderDTO.getOrderBreadLength()) + "cm");
-		comboBread.setText(orderDTO.getOrderBread());
-		comboExtra.setText(orderDTO.getOrderExtra());
-		comboSauce.setText(orderDTO.getOrderSauce());
-		fieldText.setText(orderDTO.getOrderText());
-		labelPredict.setText("ÃÑ " + orderDTO.getOrderCalorie() + "kcal " + orderDTO.getOrderPrice() + "¿ø");
+		comboMenu.setText(list.get(0).getOrderMenu());
+		comboLength.setText(Integer.toString(list.get(0).getOrderBreadLength()) + "cm");
+		comboBread.setText(list.get(0).getOrderBread());
+		comboExtra.setText(list.get(0).getOrderExtra());
+		comboSauce.setText(list.get(0).getOrderSauce());
+		fieldText.setText(list.get(0).getOrderText());
+		labelPredict.setText("ÃÑ " + list.get(0).getOrderCalorie() + "kcal " + list.get(0).getOrderPrice() + "¿ø");
 
 		// À§Ä¡µî·Ï
 		labelTitle.setBounds(340, 150, 200, 50);

@@ -287,11 +287,26 @@ public class OrderView extends JPanel implements ActionListener {
             String extraName = orderInsert(extra, extraList, extraBoolean);
             String sauceName = orderInsert(sauce, sauceList, sauceBoolean);
             
+            //메뉴 가격과 칼로리
+            menuCal = comboCalorie(menu, menuList, menuBoolean, length);
+            menuPri = comboPrice(menu, menuList, menuBoolean, length);
+          
+            // 빵 칼로리
+            breadCal = comboCalorie(bread, breadList, breadBoolean, length);
+
+            //엑스트라 가격과 칼로리
+            extraCal = comboCalorie(extra, extraList, extraBoolean, length);
+            extraPri = comboPrice(extra, extraList, extraBoolean, length);
+            
+            // 소스 칼로리
+            sauceCal = comboCalorie(sauce, sauceList, sauceBoolean, length);
+            
             int totalCal = menuCal + breadCal + extraCal + sauceCal;
             int totalPri = menuPri + extraPri;
             
             OrderDTO order = new OrderDTO(0, Integer.parseInt(length), menuName, extraName,
                             breadName, sauceName, totalPri, totalCal, F.getUserId(), fieldText.getText(), "FALSE", 1, 1);
+            List<OrderDTO> orderSelect = OrderController.orderSelect(F.getUserId());
 
             int result = 1;
             
@@ -319,7 +334,7 @@ public class OrderView extends JPanel implements ActionListener {
                 } else {
                     SuccessView.successMessage("주문을 완료했습니다.");
                     init();
-                    F.setOrderId(orderDTO.getOrderId());
+                    F.setOrderId(orderSelect.get(0).getOrderId());
                     F.add("orderResultView", new OrderResultView(F));
                     F.getCardLayout().show(F.getContentPane(), "orderResultView");
                 }

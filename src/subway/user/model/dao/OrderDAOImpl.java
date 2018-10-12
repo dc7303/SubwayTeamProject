@@ -55,11 +55,11 @@ public class OrderDAOImpl implements OrderDAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
         List<OrderDTO> list = new ArrayList<>();
-        String sql = "SELECT * FROM ORDERS WHERE lower(ORDER_USER) like lower(?) ";
+        String sql = "SELECT * FROM ORDERS WHERE lower(ORDER_USER) = lower(?) order by order_id desc";
         try {
             con = DBUtil.getConnection();
             ps = con.prepareStatement(sql);
-            ps.setString(1, "%" + userId + "%");
+            ps.setString(1, userId);
             rs = ps.executeQuery();
             while (rs.next()) {
                 OrderDTO orderDTO = new OrderDTO(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4),
