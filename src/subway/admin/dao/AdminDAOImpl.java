@@ -93,7 +93,7 @@ public class AdminDAOImpl implements AdminDAO {
         Connection con = null;
         PreparedStatement ps = null;
         int result = 0;
-        String sql = "delete from ingredient where = ?";
+        String sql = "delete from ingredients where ingred_name = ?";
 
         try {
             con = DBUtil.getConnection();

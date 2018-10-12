@@ -9,8 +9,8 @@ import subway.admin.dto.IngredientDTO;
 import subway.user.model.dto.OrderDTO;
 import subway.user.model.service.OrderService;
 import subway.user.model.service.OrderServiceImpl;
-import subway.user.view.FailView;
-import subway.user.view.SuccessView;
+import subway.admin.view.FailView;
+import subway.admin.view.SuccessView;
 
 public class OrderController {
 
@@ -89,6 +89,7 @@ public class OrderController {
         List<IngredientDTO> list = new ArrayList<>();
         try {
             list = orderService.menuList();
+            SuccessView.ingredientList(list);
         } catch (SQLException e) {
             e.printStackTrace();
             FailView.errorMessage(e.getMessage());
