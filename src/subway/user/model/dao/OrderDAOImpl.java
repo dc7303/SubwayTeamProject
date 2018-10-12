@@ -57,7 +57,7 @@ public class OrderDAOImpl implements OrderDAO {
          try {
             con = DBUtil.getConnection();
             ps = con.prepareStatement(proFile.getProperty("order.orderSelect"));
-            ps.setString(1, "%" + userId + "%");
+            ps.setString(1, userId);
             rs = ps.executeQuery();
             while (rs.next()) {
                 OrderDTO orderDTO = new OrderDTO(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4),
