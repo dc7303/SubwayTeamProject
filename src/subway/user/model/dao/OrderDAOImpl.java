@@ -21,7 +21,7 @@ public class OrderDAOImpl implements OrderDAO {
     public int orderInsert(OrderDTO orderDTO) throws SQLException {
         Connection con = null;
         PreparedStatement ps = null;
-        String sql = "INSERT INTO ORDERS VALUES(ORDER_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO ORDERS VALUES(ORDER_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NULL)";
         int result;
         // INSERT INTO ORDERS VALUES(ORDER_SEQ.NEXTVAL, 15, 'Ç®µåÆ÷Å©', '¿À¹É·¿', 'ÇÏÆ¼',
         // '·£Ä¡µå·¹½Ì', 5100,750,'C62',
@@ -40,7 +40,7 @@ public class OrderDAOImpl implements OrderDAO {
             ps.setString(9, orderDTO.getOrderText());
             ps.setString(10, orderDTO.getOrderIsMyMenu());
             ps.setInt(11, orderDTO.getOrderQuantity());
-            ps.setInt(12, orderDTO.getOrderBasket());
+            //ps.setInt(12, orderDTO.getOrderBasket());
             result = ps.executeUpdate();
 
             return result;
