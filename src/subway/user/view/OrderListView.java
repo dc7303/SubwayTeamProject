@@ -247,11 +247,13 @@ public class OrderListView extends JPanel implements ActionListener {
 
 			} else // 주문
 			{
-				F.setCallBy("order");
-				F.setOrderId(orderId);
-				// orderView에서 init필요
-				F.getCardLayout().show(F.getContentPane(), "OrderView");
-
+			    OrderDTO order =OrderController.selectOrderById(orderId);
+			    order.setOrderIsMyMenu("FALSE");
+	            OrderController.orderInsert(order);
+	            F.setCallBy("order");
+	            F.setOrderId(orderId);
+	            F.add("OrderResultView", new OrderResultView(F));
+	            F.getCardLayout().show(F.getContentPane(), "OrderResultView");
 			}
 		} else if (e.getSource() == btnOrder) {
             OrderDTO order =OrderController.selectOrderById(orderId);
