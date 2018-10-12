@@ -96,15 +96,18 @@ public class SigninView extends JPanel implements ActionListener {
 
 					@Override
 					public void actionPerformed(ActionEvent e) {
+						if(isValidate()==true) {
 						UserInfoDTO user = UserInfoController.userSignIn(fieldId.getText(), fieldPass.getText());
 						if(user == null) {
 							FailView.errorMessage("입력하신 정보와 일치한 회원이 없습니다.");
 						}
-						
+						else {
 						F.setUserId(user.getUserId());
+						SuccessView.successMessage(user.getUserId()+"님 환영합니다.");
 						F.add("Home",new HomeView(F));
 						F.getCardLayout().show(F.getContentPane(), "Home");
-					}
+						}
+					}}
 				});
 				btnSignUp.addActionListener(new ActionListener() {
 					
@@ -128,5 +131,22 @@ public class SigninView extends JPanel implements ActionListener {
             g.drawImage(img, 0, 0, null);
         }
     }
+	 public boolean isValidate() {
+	        // id 체크
+	        if (fieldId.getText().equals("")) {
+	            FailView.errorMessage("ID를 입력해 주세요");
+	            fieldId.requestFocus();
+	            return false;
+	        }
+	        // 이름 체크
+
+	        if (fieldPass.getText().equals("")) {
+	            FailView.errorMessage("비밀번호를 입력하세요");
+	            fieldPass.requestFocus();
+	            return false;
+	        }
+	        return true;
+	    }
+	
 
 }

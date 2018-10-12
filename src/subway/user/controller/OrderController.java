@@ -20,7 +20,6 @@ public class OrderController {
         int result = 0;
         try {
             result = orderService.orderInsert(orderDTO);
-            SuccessView.successMessage("insert ¼º°ø!");
         } catch (SQLException e) {
             e.printStackTrace();
             FailView.errorMessage(e.getMessage());
