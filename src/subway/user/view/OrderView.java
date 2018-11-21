@@ -306,7 +306,6 @@ public class OrderView extends JPanel implements ActionListener {
             
             OrderDTO order = new OrderDTO(0, Integer.parseInt(length), menuName, extraName,
                             breadName, sauceName, totalPri, totalCal, F.getUserId(), fieldText.getText(), "FALSE", 1, 1);
-            OrderController.orderInsert(order);
             List<OrderDTO> orderSelect = OrderController.orderSelect(F.getUserId());
 
             int result = 1;
@@ -339,7 +338,7 @@ public class OrderView extends JPanel implements ActionListener {
                 } else {
                     SuccessView.successMessage("주문을 완료했습니다.");
                     init();
-                    OrderController.orderInsert(order);
+                    //OrderController.orderInsert(order);
                     F.setOrderId(orderSelect.get(0).getOrderId());
                     F.add("orderResultView", new OrderResultView(F));
                     F.getCardLayout().show(F.getContentPane(), "orderResultView");
